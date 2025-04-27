@@ -43,6 +43,16 @@ const sidebars: SidebarsConfig = {
                 },
             ],
         },
+        {
+            type: "link",
+            href: "https://github.com/ZetaPlugins",
+            label: "GitHub",
+        },
+        {
+            type: "link",
+            href: "https://strassburger.org/discord",
+            label: "Discord",
+        },
     ],
 
     lifestealz: [
