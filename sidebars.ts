@@ -54,7 +54,7 @@ const sidebars: SidebarsConfig = {
         },
         {
             type: "category",
-            label: "Commands",
+            label: "⚡ Commands",
             items: [
                 {
                     type: "doc",
@@ -75,6 +75,32 @@ const sidebars: SidebarsConfig = {
                 {
                     type: "doc",
                     id: "lifestealz/commands/revive",
+                },
+            ],
+        },
+        {
+            type: "category",
+            label: "🛠️ Configuration",
+            items: [
+                {
+                    type: "doc",
+                    id: "lifestealz/config/configmain",
+                },
+                {
+                    type: "doc",
+                    id: "lifestealz/config/messages",
+                },
+                {
+                    type: "doc",
+                    id: "lifestealz/config/customitems",
+                },
+                {
+                    type: "doc",
+                    id: "lifestealz/config/whitelist",
+                },
+                {
+                    type: "doc",
+                    id: "lifestealz/config/datamigration",
                 },
             ],
         },
