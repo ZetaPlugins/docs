@@ -28,6 +28,8 @@ const sidebars: SidebarsConfig = {
         {
             type: "category",
             label: "Plugins",
+            collapsed: false,
+            collapsible: false,
             items: [
                 {
                     type: "link",
@@ -54,6 +56,7 @@ const sidebars: SidebarsConfig = {
         },
         {
             type: "category",
+            collapsed: false,
             label: "⚡ Commands",
             items: [
                 {
@@ -80,6 +83,7 @@ const sidebars: SidebarsConfig = {
         },
         {
             type: "category",
+            collapsed: false,
             label: "🛠️ Configuration",
             items: [
                 {
