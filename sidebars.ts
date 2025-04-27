@@ -52,6 +52,32 @@ const sidebars: SidebarsConfig = {
             type: "doc",
             id: "lifestealz/installation",
         },
+        {
+            type: "category",
+            label: "Commands",
+            items: [
+                {
+                    type: "doc",
+                    id: "lifestealz/commands/lifestealz",
+                },
+                {
+                    type: "doc",
+                    id: "lifestealz/commands/withdrawheart",
+                },
+                {
+                    type: "doc",
+                    id: "lifestealz/commands/hearts",
+                },
+                {
+                    type: "doc",
+                    id: "lifestealz/commands/eliminate",
+                },
+                {
+                    type: "doc",
+                    id: "lifestealz/commands/revive",
+                },
+            ],
+        },
     ],
 
     serverlinksz: [
