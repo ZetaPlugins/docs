@@ -52,10 +52,10 @@ const config: Config = {
             disableSwitch: false,
         },
         navbar: {
-            title: "Zeta Plugins",
+            title: "",
             logo: {
                 alt: "Zeta Plugins Logo",
-                src: "img/logo.svg",
+                src: "img/logo_long.svg",
             },
             items: [
                 {
