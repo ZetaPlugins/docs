@@ -20,10 +20,7 @@ const sidebars: SidebarsConfig = {
         {
             type: "doc",
             id: "index",
-        },
-        {
-            type: "doc",
-            id: "test",
+            className: "style_z",
         },
         {
             type: "category",
@@ -35,11 +32,13 @@ const sidebars: SidebarsConfig = {
                     type: "link",
                     href: "/lifestealz",
                     label: "Lifestealz",
+                    className: "style_lsz",
                 },
                 {
                     type: "link",
                     href: "/serverlinksz",
                     label: "ServerLinksZ",
+                    className: "style_slz",
                 },
             ],
         },

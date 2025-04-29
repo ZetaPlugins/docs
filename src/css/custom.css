@@ -1,3 +1,5 @@
+@import "./sidebar-style.css";
+
 :root {
     --ifm-color-primary: #a16ff4;
     --ifm-color-primary-dark: #7a61f4;
