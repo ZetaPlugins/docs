@@ -73,7 +73,7 @@ const config: Config = {
                     items: [
                         {
                             label: "LifeStealZ",
-                            to: "/lifestealz",
+                            href: "https://wiki.lifestealz.com/",
                         },
                         {
                             label: "ServerLinksZ",

@@ -30,7 +30,7 @@ const sidebars: SidebarsConfig = {
             items: [
                 {
                     type: "link",
-                    href: "/lifestealz",
+                    href: "https://wiki.lifestealz.com/",
                     label: "Lifestealz",
                     className: "style_lsz",
                 },
