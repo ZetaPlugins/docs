@@ -1,9 +1,38 @@
 ---
 id: index
-title: Introduction
+title: 🔗 ServerLinksZ
 displayed_sidebar: serverlinksz
 ---
 
-# ServerLinksZ
+# 🔗 ServerLinksZ
 
-AHHWDHHAWDHDAW
+![paper](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/supported/paper_vector.svg)
+![purpur](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/supported/purpur_vector.svg)
+[![github](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/github_vector.svg)](https://github.com/KartoffelChipss/ServerLinksZ)
+[![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg)](https://modrinth.com/plugin/serverlinksz)
+[![discord-plural](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/social/discord-plural_vector.svg)](https://strassburger.org/discord)
+[![generic-plural](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/translate/generic-plural_vector.svg)](https://gitlocalize.com/repo/9890)
+
+## Features
+
+-   ✅ Custom links
+-   ✅ Colored link Names
+-   ✅ HEX Colors
+-   ✅ Link commands (e.g. `/discord`, `/website`)
+-   ✅ Highly customizable
+-   ✅ Easy setup
+-   ✅ Multiple languages
+
+## Support
+
+If you need further help with ServerLinksZ, you can join in our [Discord Server](https://discord.com/invite/Cc76tYwXvy). You can either ask in the #support channel or create a Ticket.
+
+## Links
+
+-   [GitHub](https://github.com/KartoffelChipss/ServerLinksZ)
+-   [Modrinth](https://modrinth.com/plugin/serverlinksz)
+-   [Support Discord](https://strassburger.org/discord)
+-   [bStats](https://bstats.org/plugin/bukkit/ServerLinksZ/22795)
+-   [JavaDoc](https://jd.slz.zetaplugins.com/)
+
+[![bStats](https://bstats.org/signatures/bukkit/ServerLinksZ.svg)](https://bstats.org/plugin/bukkit/ServerLinksZ/22795)
