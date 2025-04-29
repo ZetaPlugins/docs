@@ -80,7 +80,7 @@ const sidebars: SidebarsConfig = {
                 {
                     type: "doc",
                     id: "serverlinksz/customization/messages",
-                    className: "style_message",
+                    className: "style_speechbubble",
                 },
             ],
         },
