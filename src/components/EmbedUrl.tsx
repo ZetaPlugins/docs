@@ -13,7 +13,17 @@ const EmbedUrl = ({ url, title, width = "100%", height = "600px" }) => {
         return null;
     }
 
-    return <iframe src={url} width={width} height={height} title={title} sandbox="allow-scripts allow-same-origin allow-popups" loading="lazy" referrerPolicy="no-referrer" />;
+    return (
+        <iframe
+            src={url}
+            width={width}
+            height={height}
+            title={title}
+            sandbox="allow-scripts allow-same-origin allow-popups"
+            loading="lazy"
+            referrerPolicy="no-referrer"
+        />
+    );
 };
 
 export default EmbedUrl;

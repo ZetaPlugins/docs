@@ -48,8 +48,8 @@ const config: Config = {
         // image: "img/docusaurus-social-card.jpg",
         colorMode: {
             defaultMode: "dark",
-            respectPrefersColorScheme: true,
-            disableSwitch: false,
+            respectPrefersColorScheme: false,
+            disableSwitch: true,
         },
         navbar: {
             title: "",
@@ -104,7 +104,7 @@ const config: Config = {
                     ],
                 },
             ],
-            copyright: `Copyright © 2025 Zeta Plugins.`,
+            copyright: `Copyright © 2025 Zeta Plugins. Licensed under <a style="color: inherit" href="https://github.com/ZetaPlugins/docs/blob/main/LICENSE-DOCS" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.`,
         },
         prism: {
             theme: prismThemes.github,

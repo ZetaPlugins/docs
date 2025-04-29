@@ -58,10 +58,50 @@ const sidebars: SidebarsConfig = {
         {
             type: "doc",
             id: "serverlinksz/index",
+            className: "style_slz",
         },
         {
             type: "doc",
             id: "serverlinksz/installation",
+            className: "style_download",
+        },
+        {
+            type: "category",
+            label: "Customization",
+            className: "style_paintbrush",
+            collapsed: false,
+            collapsible: true,
+            items: [
+                {
+                    type: "doc",
+                    id: "serverlinksz/customization/config",
+                    className: "style_wrench",
+                },
+                {
+                    type: "doc",
+                    id: "serverlinksz/customization/messages",
+                    className: "style_message",
+                },
+            ],
+        },
+        {
+            type: "category",
+            label: "Commands",
+            className: "style_command",
+            collapsed: false,
+            collapsible: true,
+            items: [
+                {
+                    type: "doc",
+                    id: "serverlinksz/commands/sl_add",
+                    className: "style_plus",
+                },
+                {
+                    type: "doc",
+                    id: "serverlinksz/commands/sl_remove",
+                    className: "style_minus",
+                },
+            ],
         },
     ],
 };

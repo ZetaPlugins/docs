@@ -1,0 +1,35 @@
+---
+id: sl_add
+title: Add a Link
+displayed_sidebar: serverlinksz
+---
+
+# Add a link
+
+## Description
+
+The `/sl add` command is used to add a new link to the server.
+
+## Usage
+
+```plaintext
+/sl add <id> <name> <url> [allowCommand]
+```
+
+## Arguments
+- `<id>`: The ID of the link. This must be unique and cannot be the same as any other link ID.
+- `<name>`: The name of the link (Allows usage of color codes)
+- `<url>`: The URL of the link. This must be a valid URL.
+- `[allowCommand]`: Optional. If this is set to `true`, users will be able to use a command to get the link.
+
+## Examples
+
+```plaintext
+/sl add discord <#7289da>&lDiscord https://discord.gg/yourserver
+/sl add website <#7cd770>&lWebsite https://yourserver.com
+/sl add store <#ff0000>&lStore https://store.yourserver.com true
+```
+
+## Permissions
+
+- `serverlinksz.admin`: Allows the user to use the `/sl add` command.
