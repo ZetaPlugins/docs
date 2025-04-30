@@ -40,6 +40,12 @@ const sidebars: SidebarsConfig = {
                     label: "ServerLinksZ",
                     className: "style_slz",
                 },
+                {
+                    type: "link",
+                    href: "/cookieclickerz",
+                    label: "CookieClickerZ",
+                    className: "style_ccz",
+                },
             ],
         },
         {
@@ -102,6 +108,24 @@ const sidebars: SidebarsConfig = {
                     className: "style_minus",
                 },
             ],
+        },
+    ],
+
+    cookieclickerz: [
+        {
+            type: "doc",
+            id: "cookieclickerz/index",
+            className: "style_ccz",
+        },
+        {
+            type: "doc",
+            id: "cookieclickerz/installation",
+            className: "style_download",
+        },
+        {
+            type: "doc",
+            id: "cookieclickerz/getting_started",
+            className: "style_rocket",
         },
     ],
 };
