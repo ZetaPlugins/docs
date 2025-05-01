@@ -1,4 +1,5 @@
 @import "./sidebar-style.css";
+@import "./DiscordInvite.css";
 
 :root {
     --ifm-color-primary: #a16ff4;
