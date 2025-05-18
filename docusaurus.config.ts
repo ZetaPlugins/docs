@@ -103,6 +103,15 @@ const config: Config = {
                         },
                     ],
                 },
+                {
+                    title: "Legal",
+                    items: [
+                        {
+                            label: "Impressum",
+                            href: "/impressum",
+                        },
+                    ],
+                },
             ],
             copyright: `Copyright © 2025 Zeta Plugins. Licensed under <a style="color: inherit" href="https://github.com/ZetaPlugins/docs/blob/main/LICENSE-DOCS" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.`,
         },
