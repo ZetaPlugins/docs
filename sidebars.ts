@@ -46,6 +46,12 @@ const sidebars: SidebarsConfig = {
                     label: "CookieClickerZ",
                     className: "style_ccz",
                 },
+                {
+                    type: "link",
+                    href: "/timberz",
+                    label: "TimberZ",
+                    className: "style_tz",
+                },
             ],
         },
         {
@@ -126,6 +132,19 @@ const sidebars: SidebarsConfig = {
             type: "doc",
             id: "cookieclickerz/getting_started",
             className: "style_rocket",
+        },
+    ],
+
+    timberz: [
+        {
+            type: "doc",
+            id: "timberz/index",
+            className: "style_tz",
+        },
+        {
+            type: "doc",
+            id: "timberz/installation",
+            className: "style_download",
         },
     ],
 };
