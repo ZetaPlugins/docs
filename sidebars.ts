@@ -55,14 +55,21 @@ const sidebars: SidebarsConfig = {
             ],
         },
         {
+            type: "doc",
+            id: "localization",
+            className: "style_globe",
+        },
+        {
             type: "link",
             href: "https://github.com/ZetaPlugins",
             label: "GitHub",
+            className: "style_github",
         },
         {
             type: "link",
             href: "https://strassburger.org/discord",
             label: "Discord",
+            className: "style_discord",
         },
     ],
 
