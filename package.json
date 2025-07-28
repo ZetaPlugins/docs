@@ -1,12 +1,13 @@
 {
-  "name": "zeta-docs-new",
+  "name": "zeta-docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "next build",
     "dev": "next dev --turbo",
     "start": "next start",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "fumadocs-mdx",
+    "restart": "pm2 restart zeta-docs"
   },
   "dependencies": {
     "fumadocs-core": "15.6.3",

@@ -1,3 +1,6 @@
+/.next
+/.source
+
 # Dependencies
 /node_modules
 
