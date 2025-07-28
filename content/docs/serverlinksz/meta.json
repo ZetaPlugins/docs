@@ -1,0 +1,16 @@
+{
+    "title": "ServerLinksZ",
+    "description": "The ServerLinksZ plugin",
+    "pages": [
+        "index",
+        "installation",
+        "---Commands---",
+        "commands/sl_add",
+        "commands/sl_remove",
+        "---Customization---",
+        "customization/config",
+        "customization/messages"
+    ],
+    "defaultOpen": false,
+    "root": true
+}

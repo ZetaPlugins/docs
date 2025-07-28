@@ -1,0 +1,11 @@
+{
+    "title": "CookieClickerZ",
+    "description": "The CookieCLickerZ plugin",
+    "pages": [
+        "index",
+        "installation",
+        "getting_started"
+    ],
+    "defaultOpen": false,
+    "root": true
+}

@@ -1,0 +1,10 @@
+{
+    "title": "TimberZ",
+    "description": "The TimberZ plugin",
+    "pages": [
+        "index",
+        "installation"
+    ],
+    "defaultOpen": false,
+    "root": true
+}

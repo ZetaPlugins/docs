@@ -1,0 +1,26 @@
+{
+    "title": "LifeStealZ",
+    "description": "The LifeStealZ plugin",
+    "pages": [
+        "index",
+        "installation",
+        "---Commands---",
+        "commands/lifestealz",
+        "commands/eliminate",
+        "commands/revive",
+        "commands/withdrawheart",
+        "commands/hearts",
+        "---Configuration---",
+        "config/index",
+        "config/customitems",
+        "config/messages",
+        "config/datamigration",
+        "---Cross Plugin Support---",
+        "crosspluginsupport/placeholderapi",
+        "crosspluginsupport/worldguard",
+        "---Developer API---",
+        "dev/usinglszapi"
+    ],
+    "defaultOpen": false,
+    "root": true
+}
