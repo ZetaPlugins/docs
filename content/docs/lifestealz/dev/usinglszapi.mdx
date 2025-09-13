@@ -32,6 +32,7 @@ Add the following to your `pom.xml` file:
     </dependency>
 </dependencies>
 ```
+
 </Tab>
 
 <Tab value="Gradle">
@@ -48,6 +49,7 @@ dependencies {
     compileOnly 'com.zetaplugins.lifestealz:lifestealz:1.0.0' // Replace with the latest version
 }
 ```
+
 </Tab>
 </Tabs>
 
@@ -79,14 +81,15 @@ author: author
 main: com.yourplugin.MainClass
 
 dependencies:
-  server:
-    LifeStealZ:
-      load: BEFORE # This means that LifeStealZ will be loaded before your plugin
-      required: false # Use 'true' for hard dependency
+    server:
+        LifeStealZ:
+            load: BEFORE # This means that LifeStealZ will be loaded before your plugin
+            required: false # Use 'true' for hard dependency
 ```
+
 </Tab>
 </Tabs>
 
 ## What can you do with the API?
 
-If you want to learn, what you can do with the LifeStealZ api, please refer to the following documentation pages or the [JavaDoc](https://javadocs.lifestealz.com/).
+If you want to learn, what you can do with the LifeStealZ api, please refer to the following documentation pages or the [JavaDoc](https://jd.lsz.zetaplugins.com/).
