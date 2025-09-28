@@ -1,0 +1,7 @@
+{
+    "title": "NetwatchZ",
+    "description": "The NetwatchZ plugin",
+    "pages": ["index", "installation"],
+    "defaultOpen": false,
+    "root": true
+}

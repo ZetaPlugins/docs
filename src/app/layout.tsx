@@ -1,18 +1,18 @@
-import "@/app/global.css";
-import { RootProvider } from "fumadocs-ui/provider";
-import { Inter } from "next/font/google";
-import type { ReactNode } from "react";
+import '@/app/global.css';
+import { RootProvider } from 'fumadocs-ui/provider';
+import { Inter } from 'next/font/google';
+import type { ReactNode } from 'react';
 
 const inter = Inter({
-    subsets: ["latin"],
+    subsets: ['latin'],
 });
 
 export const metadata = {
-    title: "ZetaPlugins",
+    title: 'ZetaPlugins',
     icons: {
-        icon: "/favicon.ico",
-        apple: "/favicons/apple-touch-icon.png",
-        shortcut: "/favicons/favicon-96x96.png",
+        icon: '/favicon.ico',
+        apple: '/favicons/apple-touch-icon.png',
+        shortcut: '/favicons/favicon-96x96.png',
     },
 };
 
