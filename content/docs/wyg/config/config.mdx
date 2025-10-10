@@ -1,0 +1,248 @@
+---
+title: Configuration
+icon: MessageCircleMore
+---
+
+<Callout type="info">
+For more help, see our references:
+- MiniMessage: https://docs.advntr.dev/minimessage/format.html
+- Minecraft 1.21+ sprites browser: https://mcasset.cloud/1.21.10/assets/minecraft/textures
+</Callout>
+
+
+This document explains every configurable part of WYG (What’d Ya Got!) and lists all placeholders with examples. It is organized with headings and compact tables for quick scanning.
+
+- ✅ Formatting engine: MiniMessage (supports colors, gradients, click events, etc.)
+- ✅ Sprites: Fully supports 1.21+ sprites and custom icons
+
+## Formatting
+
+WYG uses MiniMessage everywhere text is configured.
+You can use MiniMessage tags anywhere a format string is accepted, including `share-message.format`, `item-display.format`, `hover-text.layout`, `hover-text.enchantment-format`, `hover-text.stack-format`, and attribute formats.
+
+
+## Sprites and icons
+
+You can embed Minecraft sprites anywhere MiniMessage is parsed by WYG.
+
+#### Supported tags:
+```yml
+
+- `<sprite:path>`
+- `<sprite:atlas/path>`
+- `<sprite:namespace:path>`
+- `<sprite:namespace:atlas/path>`
+- `<item_sprite>` # the current item’s icon (tooltip contexts)
+- `<player_head>` # the current player’s head (share messages)
+- `<player_head:PlayerName>` # head for any named player
+```
+
+<Callout type="info">
+    **Known atlases**:
+    ```yml
+    gui, blocks, items, particles, mob_effects, paintings, map_decorations
+    ```
+    - Example sprites: `<sprite:item/diamond_sword>`, `<sprite:gui/hud/heart/full>`
+
+</Callout>
+
+---
+
+# Configuration Optionns
+## Share message
+
+Path: `share-message.format`
+
+What it controls: The chat line sent when a player shares an item (e.g., via `/wyg`).
+
+Placeholders
+
+| Placeholder | Description |
+|---|---|
+| `<player>` | Sender’s name |
+| `<player_head>` / `<player_head:Name>` | Player head icon |
+| `<item>` | Fully formatted item component (uses Item Display + Hover Tooltip if enabled) |
+| `<sprite:...>` | Any sprite tag (see Sprites and icons) |
+
+#### Examples
+```yml
+<player> shared <item>
+<player_head> <player> <gray>→</gray> <item>
+<gradient:yellow:gold><player_head> <player></gradient> <gray>→</gray> <item>
+```
+
+## Item display
+
+Path: `item-display.format`
+
+What it controls: The inline, clickable item component that appears in chat.
+
+### Placeholders
+
+| Placeholder | Description |
+|---|---|
+| `<sprite>` | The item's icon (automatically omitted for blocks if left in) |
+| `<item>` | Item name (custom display name or the translatable base name) |
+| `<sprite:...>` | Any sprite tag; you can add additional icons |
+
+#### Examples
+
+```yml
+[<sprite> <item>]
+<aqua><u>[<sprite> <item>]</u></aqua>
+<gradient:green:blue><sprite> <item></gradient>
+```
+
+---
+
+## Hover tooltip
+
+Path: `hover-text.*`
+
+- `hover-text.enabled`: `true|false` — Master switch for hover tooltips on the item component.
+
+### Layout
+
+Path: `hover-text.layout`
+
+Each entry in `layout` is one tooltip line. Some placeholders expand to multiple lines and must be used on their own line.
+
+#### Single-line placeholders (can be combined on the same line)
+
+| Placeholder | Description | Notes |
+|---|---|---|
+| `<name>` | Item display name | — |
+| `<item_name>` | Base translatable name | — |
+| `<stack>` | Stack size | Skipped when amount ≤ 1 |
+| `<durability_current>` | Current durability | Skipped if not damageable |
+| `<durability_max>` | Max durability | Skipped if 0 |
+| `<attributes:attack_damage>` | Attack Damage for matching slot(s) | Uses sender's base + item modifiers |
+| `<attributes:attack_speed>` | Attack Speed for matching slot(s) | Uses sender's base + item modifiers |
+| `<attributes:armor>` | Armor for matching slot(s) | Uses sender's base + item modifiers |
+| `<attributes:armor_toughness>` | Armor Toughness for matching slot(s) | Uses sender's base + item modifiers |
+| `<attributes:knockback_resistance>` | Knockback Resistance | Displayed as percentage (0–100) |
+| `<attributes_header:hand\|off_hand\|head\|chest\|legs\|feet>` | Slot header only | Header for a specific slot |
+
+#### Multi-line placeholders (must be on their own line)
+
+| Placeholder | Description | Skips when |
+|---|---|---|
+| `<enchantments>` | Each enchant on its own line | No enchantments on the item |
+| `<lore>` | Item lore lines | No lore present |
+| `<attributes>` | Attribute blocks per slot with headers and lines | No matching attribute modifiers |
+
+#### Rules and tips
+
+- Multi-line placeholders must be alone on the line or they will render literally.
+- Single-line placeholders can be combined freely, e.g.:
+```yml
+<attributes:attack_damage> <attributes:attack_speed> <sprite:gui/statistics/item_crafted> <gray><durability_current></gray>
+  ```
+- Unknown `<attributes:...>` keys resolve to empty safely.
+- Empty strings (`""`) create spacing; they are skipped automatically when adjacent content is skipped to prevent dangling blanks.
+
+---
+
+### Enchantment format
+
+Path: `hover-text.enchantment-format`
+
+#### Placeholders
+
+| Placeholder | Description |
+|---|---|
+| `<enchantment>` | Translatable enchantment name |
+| `<level>` | Translatable level (may be empty for single-level enchants at level 1) |
+
+#### Example
+
+```yml
+<gray><enchantment><level></gray>
+```
+
+---
+
+### Stack size format
+
+Path: `hover-text.stack-format`
+
+#### Placeholders
+
+| Placeholder | Description |
+|---|---|
+| `<amount>` | The stack amount |
+
+#### Example
+
+```yml
+<gray>Stack Size: <amount></gray>
+```
+
+---
+
+### Attributes
+
+Path: `hover-text.attributes.*`
+
+#### Slot header
+
+- `slot-header-format` — Header line shown before a slot's attributes (used by `<attributes>` and `<attributes_header:...>`)
+- Default: `"<gray><slot></gray>"`
+
+##### Placeholders
+
+| Placeholder | Description |
+|---|---|
+| `<slot>` | Translatable slot name (e.g., When in Main Hand) |
+
+#### Per-attribute formats
+
+- `formats.attack_damage` — Total attack damage
+- `formats.attack_speed` — Total attack speed
+- `formats.armor` — Total armor
+- `formats.armor_toughness` — Total armor toughness
+- `formats.knockback_resistance` — Total knockback resistance as percentage; `<value>` is already 0–100
+
+##### Shared placeholders in formats
+
+| Placeholder | Description |
+|---|---|
+| `<value>` | Numeric value, up to 2 decimals (for knockback resistance it's already multiplied by 100) |
+| `<attribute>` | Translatable attribute name (e.g., Attack Damage) |
+
+#### Example values
+
+```yml
+<sprite:gui/hud/heart/full> <white><value></white>
+<blue>+<value> <attribute></blue>
+```
+
+---
+
+### How attribute values are computed
+
+- **Sender-based:** values are based on the SENDER (invoker), not the viewer.
+- **Base values:** start from the player's base value; modifiers are applied by operation:
+- `ADD_NUMBER` — added directly
+- `ADD_SCALAR`, `MULTIPLY_SCALAR_1` — add `base * amount`
+- **Slot filtering:** only modifiers for the relevant `EquipmentSlot` count for that slot.
+- **Knockback resistance:** displayed as a percentage (`total * 100`).
+- **Vanilla-like behavior:** Attack Damage lines are hidden if `total <= base`.
+
+
+
+## Chat usage (FYI)
+
+Players can type bracketed slot names (e.g., `[hand]`, `[offhand]`, `[head]`, `[chest]`, `[legs]`, `[feet]`) to inject their equipped item using the configured Item Display and Tooltip. The inserted component respects all formatting described above.
+
+
+<Callout type="warning">
+    ## Troubleshooting
+    - If a line renders literally (e.g., `"<lore>"`), ensure multi‑line placeholders are alone on their line.
+    - If an attribute placeholder shows nothing inline, confirm the item provides that attribute and you used one of: `attack_damage`, `attack_speed`, `armor`, `armor_toughness`, `knockback_resistance`.
+    - If durability shows nothing, the item is likely not damageable.
+    - `<player_head>` without an argument only works where WYG provides player context (e.g., share message). Use `<player_head:Name>` everywhere else.
+
+</Callout>
+
+

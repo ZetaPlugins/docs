@@ -75,6 +75,17 @@ export default function Layout({ children }: { children: ReactNode }) {
                             />
                         ),
                     },
+                    {
+                        title: 'WYG',
+                        url: '/wyg',
+                        icon: (
+                            <img
+                                src="/img/wyg.png"
+                                alt="WYG Logo" // TODO: replace with SVG
+                                style={{ borderRadius: '3px' }}
+                            />
+                        ),
+                    },
                 ],
             }}
             tree={source.pageTree}
