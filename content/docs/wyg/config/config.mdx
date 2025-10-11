@@ -18,7 +18,7 @@ This document explains every configurable part of WYG (What’d Ya Got!) and lis
 ## Formatting
 
 WYG uses MiniMessage everywhere text is configured.
-You can use MiniMessage tags anywhere a format string is accepted, including `share-message.format`, `item-display.format`, `hover-text.layout`, `hover-text.enchantment-format`, `hover-text.stack-format`, and attribute formats.
+You can use MiniMessage tags anywhere a format string is accepted, including `share-message.format`, `item-display.format`, `hover-text.layout`, `hover-text.enchantment-format`, `hover-text.stack-format`, `hover-text.durability-format`, `hover-text.item-name.format`, and attribute formats.
 
 
 ## Sprites and icons
@@ -116,6 +116,7 @@ Each entry in `layout` is one tooltip line. Some placeholders expand to multiple
 | `<stack>` | Stack size | Skipped when amount ≤ 1 |
 | `<durability_current>` | Current durability | Skipped if not damageable |
 | `<durability_max>` | Max durability | Skipped if 0 |
+| `<durability>` | Formatted durability (`hover-text.durability-format`) | Skipped if not damageable |
 | `<attributes:attack_damage>` | Attack Damage for matching slot(s) | Uses sender's base + item modifiers |
 | `<attributes:attack_speed>` | Attack Speed for matching slot(s) | Uses sender's base + item modifiers |
 | `<attributes:armor>` | Armor for matching slot(s) | Uses sender's base + item modifiers |
@@ -136,10 +137,11 @@ Each entry in `layout` is one tooltip line. Some placeholders expand to multiple
 - Multi-line placeholders must be alone on the line or they will render literally.
 - Single-line placeholders can be combined freely, e.g.:
 ```yml
-<attributes:attack_damage> <attributes:attack_speed> <sprite:gui/statistics/item_crafted> <gray><durability_current></gray>
+<attributes:attack_damage> <attributes:attack_speed> <sprite:gui/statistics/item_crafted> <gray><durability></gray>
   ```
 - Unknown `<attributes:...>` keys resolve to empty safely.
 - Empty strings (`""`) create spacing; they are skipped automatically when adjacent content is skipped to prevent dangling blanks.
+- Lines that resolve to no visible text are skipped automatically when their placeholders render nothing (prevents stray blank rows).
 
 ---
 
@@ -176,6 +178,52 @@ Path: `hover-text.stack-format`
 
 ```yml
 <gray>Stack Size: <amount></gray>
+```
+
+---
+
+### Durability format
+
+Path: `hover-text.durability-format`
+
+#### Placeholders
+
+| Placeholder | Description |
+|---|---|
+| `<current>` | Current durability (max - damage) |
+| `<max>` | Maximum durability |
+
+#### Example
+
+```yml
+<sprite:gui/hud/heart/full> <gray>Durability: <current>/<max></gray>
+```
+
+---
+
+### Item name (base) secondary line
+
+Path: `hover-text.item-name.*`
+
+Controls rendering of the `<item_name>` placeholder in your tooltip. Useful for showing the base material name on a second line when the item has a custom display name.
+
+- `format` — MiniMessage format used to render the base name. Inside this string, `<item_name>` is the translatable material name you can wrap with colors/effects/sprites.
+- `render-if-same-as-name` — If `false` (default), any layout line containing `<item_name>` is skipped when the item is not renamed (i.e., its display name equals the base item name). Set to `true` to always show it.
+
+#### Examples
+
+```yml
+# In hover-text.layout
+- "<name>"
+- "<item_name>"  # will be skipped for unrenamed items when render-if-same-as-name: false
+```
+
+```yml
+# Settings
+hover-text:
+  item-name:
+    format: "<gray><item_name></gray>"
+    render-if-same-as-name: false
 ```
 
 ---
