@@ -1,0 +1,129 @@
+---
+title: Commands & Permissions
+icon: Terminal
+---
+
+
+This page lists all commands provided by WYG and the permissions that control them. It also explains how the chat "short-circuit" works, letting players share items without running commands.
+
+---
+
+## Base command
+
+**Command:** `/wyg`  
+**Alias:** `/showitem`
+
+Use `/wyg <subcommand> [target]` to share the item from a specific equipment slot. Most subcommands accept an optional `target` argument (another online player). If omitted, the item is shared to chat according to your server's normal chat recipients.
+
+---
+
+## Subcommands
+
+### Syntax legend
+- `[]` = optional
+- `target` = another online player (tab-completes; excludes yourself)
+
+### Available subcommands
+
+| Command | Description |
+|---------|-------------|
+| `/wyg hand [target]` | Share the item in your main hand |
+| `/wyg offhand [target]` | Share the item in your offhand |
+| `/wyg helmet [target]` | Share your helmet |
+| `/wyg chestplate [target]` | Share your chestplate |
+| `/wyg leggings [target]` | Share your leggings |
+| `/wyg boots [target]` | Share your boots |
+| `/wyg reload` | Reload the plugin's configuration |
+
+### Notes
+- If the referenced slot is empty (AIR), nothing will be shared for that slot.
+- The `target` argument is optional on equipment subcommands. If provided, WYG shares the item while addressing/targeting that player. If omitted, it's shared normally to chat.
+
+---
+
+## Permissions
+
+The plugin recognizes the following permissions. Only `wyg.reload` is strictly enforced by the command registration in code; the others are provided for server policy and may be enforced by your permission system or future updates.
+
+| Permission | Description | Default |
+|------------|-------------|---------|
+| `wyg.use` | Allows usage of WYG commands | — |
+| `wyg.hand` | Allows showing items in main hand | — |
+| `wyg.offhand` | Allows showing items in offhand | — |
+| `wyg.helmet` | Allows showing helmet | — |
+| `wyg.chestplate` | Allows showing chestplate | — |
+| `wyg.leggings` | Allows showing leggings | — |
+| `wyg.boots` | Allows showing boots | — |
+| `wyg.equipment.others` | Allows showing other players' equipment (using the optional target) | — |
+| `wyg.reload` | Allows reloading the WYG configuration | op |
+
+### Recommended setups
+- **Casual servers:** grant `wyg.use`, the per-slot permissions you want, and optionally `wyg.equipment.others` to trusted roles.
+- **Admins/mods:** grant `wyg.*` (or `wyg.reload` specifically for reloading config).
+
+---
+
+## Chat short-circuit: brackets in chat
+
+You do not need a command to share your item. WYG listens to chat and replaces simple bracketed slot names with live item components.
+
+### How to use
+
+Type any message and include one or more of these markers:
+
+```
+[hand]
+[offhand]
+[helmet]
+[chestplate]
+[leggings]
+[boots]
+```
+
+### What happens under the hood
+
+1. WYG scans your chat message for `[slot]` patterns.
+2. For each recognized slot, it looks up your current item in that slot.
+3. If the slot is valid and not empty, it replaces the text (e.g., `[hand]`) with a fully formatted, hoverable item component.
+4. If nothing matches (e.g. the slot text is unknown or the item is AIR), the original bracketed text is left as-is, and the message goes through unchanged.
+
+### Why this "short-circuits" commands
+
+- Instead of typing `/wyg hand`, you can just type: `Check this out: [hand]`.
+- You can include multiple: `My kit: [helmet] [chestplate] [leggings] [boots]`.
+- This is faster and keeps chat natural, while still producing the same rich item previews as the commands.
+
+### Behavior notes
+
+- Formatting and hover behavior are controlled by `item-display.format` and `hover-text.*` in `config.yml`.
+- If a slot marker appears but your slot is empty, WYG skips the replacement and keeps the literal text (e.g., `[hand]`).
+- Only simple alphabetical slot names in square brackets are recognized, as listed above.
+
+---
+
+## Examples
+
+| Scenario | Example |
+|----------|---------|
+| Command way | `/wyg hand` |
+| Chat way (short-circuit) | `Got this new sword: [hand]` |
+| Targeting another player | `/wyg helmet Alex` |
+| Show full armor set | `Peep the fit → [helmet] [chestplate] [leggings] [boots]` |
+
+---
+
+## Troubleshooting
+
+### Nothing shows up when I use `[hand]`
+
+- Make sure you actually have an item in that slot.
+- Check that hover/tooltips are enabled if you expect hover text (`hover-text.enabled: true`).
+- Confirm that other chat plugins aren't stripping MiniMessage or Adventure components.
+
+### "I can't use `/wyg reload`"
+
+- Ensure you have `wyg.reload` or are OP.
+
+### "Players can't use commands"
+
+- Grant `wyg.use` and relevant per-slot permissions listed above.

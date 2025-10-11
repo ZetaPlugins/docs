@@ -1,0 +1,16 @@
+{
+    "title": "WYG",
+    "description": "What'd Ya Got",
+    "pages": [
+      "index",
+      "installation",
+      "---Customization---",
+      "config/config",
+      "config/example",
+      "---Commands and Permissions---",
+      "commands/commands"
+
+    ],
+    "defaultOpen": false,
+    "root": true
+}

@@ -1,0 +1,77 @@
+---
+title: Example Configs
+icon: Sparkles
+---
+
+import {Tab, Tabs} from "fumadocs-ui/components/tabs";
+
+Ready-to-use configuration presets for WYG. Copy and paste these into your `config.yml` to get started quickly, or use them as inspiration for your own custom setup.
+
+---
+
+## Modded Style
+
+A clean, minimal configuration that mimics popular Modpack item display and tooltips.
+This preset was based on the deprecated mod [**Obscuria's Tooltip**](https://www.curseforge.com/minecraft/mc-mods/ob-tooltips)
+
+<Tabs items={['Config',  'Preview Tool', 'Preview Armor']}>
+    <Tab value="Config">
+        ```yml
+        share-message:
+            format: "<player_head> <player><gray> →</gray> <item>"
+
+        item-display:
+            format: "<sprite> <item>"
+        hover-text:
+            enabled: true
+            layout:
+            - "<name>"
+            # Not all these attributes are going to be displayed, only those the item contains.
+            - "<attributes:attack_damage><attributes:attack_speed><attributes:armor><attributes:armor_toughness><attributes:knockback_resistance><sprite:gui/statistics/item_crafted> <grey><durability_current></grey>"
+            - "<sprite:item/name_tag> <grey><item_name></grey>"
+            - ""
+            - "<enchantments>"
+            - "<lore>"
+            - ""
+
+        enchantment-format: "<gray><enchantment><level></gray>"
+        stack-format: "<gray>Stack Size: <amount></gray>"
+        attributes:
+            slot-header-format: "<gray><slot></gray>"
+            formats:
+                attack_damage: "<sprite:gui/hud/heart/full> <white><value></white> "
+                attack_speed: "<sprite:item/iron_sword> <white><value></white> "
+                armor: "<sprite:gui/hud/armor_full> <value> "
+                armor_toughness: "<sprite:item/totem_of_undying> <value> "
+                knockback_resistance: "<sprite:item/arrow> <value> "
+        ```
+    </Tab>
+
+    <Tab value="Preview Tool">
+        <p align="center">
+            <img src="/img/wyg/styles/moddedstyle.png" alt="Usage" />
+        </p>
+    </Tab>
+    <Tab value="Preview Armor">
+        <p align="center">
+            <img src="/img/wyg/styles/moddedstyle_armor.png" alt="Usage" />
+        </p>
+    </Tab>
+</Tabs>
+
+<Callout type="info">
+    ## Attributions
+    <i>Items shown in the display images derive from the [AdvancedEnchantments](https://ae.advancedplugins.net) Plugin</i>
+
+
+</Callout>
+---
+
+
+## Tips for Customization
+
+- **Mix and match:** Take elements from different presets to create your own unique style.
+- **Test iteratively:** Use `/wyg reload` to see changes instantly without restarting your server.
+- **Sprite discovery:** Check out the [Sprites and icons](/wyg/config/config#sprites-and-icons) section for a full list of available sprites.
+- **Color codes:** MiniMessage supports hex colors, gradients, and all standard Minecraft color names.
+- **Spacing matters:** Empty strings (`""`) in the layout create visual breathing room between sections.
