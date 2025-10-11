@@ -80,8 +80,8 @@ export default function Layout({ children }: { children: ReactNode }) {
                         url: '/wyg',
                         icon: (
                             <img
-                                src="/img/wyg.png"
-                                alt="WYG Logo" // TODO: replace with SVG
+                                src="/img/wyg.svg"
+                                alt="WYG Logo"
                                 style={{ borderRadius: '3px' }}
                             />
                         ),
