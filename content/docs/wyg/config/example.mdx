@@ -14,36 +14,43 @@ Ready-to-use configuration presets for WYG. Copy and paste these into your `conf
 A clean, minimal configuration that mimics popular Modpack item display and tooltips.
 This preset was based on the deprecated mod [**Obscuria's Tooltip**](https://www.curseforge.com/minecraft/mc-mods/ob-tooltips)
 
-<Tabs items={['Config',  'Preview Tool', 'Preview Armor']}>
+<Tabs items={['Config', 'Preview Tool', 'Preview Armor']}>
     <Tab value="Config">
         ```yml
         share-message:
-            format: "<player_head> <player><gray> →</gray> <item>"
+          format: "<player_head> <player> <gray>shared</gray> <item>"
 
         item-display:
-            format: "<sprite> <item>"
+          format: "<sprite> <item>"
+
         hover-text:
-            enabled: true
-            layout:
+          enabled: true
+          layout:
             - "<name>"
-            # Not all these attributes are going to be displayed, only those the item contains.
-            - "<attributes:attack_damage><attributes:attack_speed><attributes:armor><attributes:armor_toughness><attributes:knockback_resistance><sprite:gui/statistics/item_crafted> <grey><durability_current></grey>"
+            - # Not all these attributes are going to be displayed, only those the item contains.
+            - "<attributes:attack_damage><attributes:attack_speed><attributes:armor><attributes:armor_toughness><attributes:knockback_resistance><durability>"
             - "<sprite:item/name_tag> <grey><item_name></grey>"
             - ""
             - "<enchantments>"
             - "<lore>"
-            - ""
+            - "<stack>"
 
-        enchantment-format: "<gray><enchantment><level></gray>"
-        stack-format: "<gray>Stack Size: <amount></gray>"
-        attributes:
+          enchantment-format: "<gray><enchantment><level></gray>"
+          stack-format: "<sprite:item/bundle> <gray><amount></gray>"
+          durability-format: "<sprite:gui/statistics/item_crafted> <current><gray>/<max></gray>"
+
+          item-name:
+            format: "<item_name>"
+            render-if-same-as-name: false
+
+          attributes:
             slot-header-format: "<gray><slot></gray>"
             formats:
-                attack_damage: "<sprite:gui/hud/heart/full> <white><value></white> "
-                attack_speed: "<sprite:item/iron_sword> <white><value></white> "
-                armor: "<sprite:gui/hud/armor_full> <value> "
-                armor_toughness: "<sprite:item/totem_of_undying> <value> "
-                knockback_resistance: "<sprite:item/arrow> <value> "
+              attack_damage: "<sprite:gui/hud/heart/full> <white><value></white>"
+              attack_speed: "<sprite:item/iron_sword> <white><value></white>"
+              armor: "<sprite:gui/hud/armor_full> <value>"
+              armor_toughness: "<sprite:item/totem_of_undying> <value>"
+              knockback_resistance: "<sprite:item/arrow> <value>"
         ```
     </Tab>
 
@@ -62,11 +69,8 @@ This preset was based on the deprecated mod [**Obscuria's Tooltip**](https://www
 <Callout type="info">
     ## Attributions
     <i>Items shown in the display images derive from the [AdvancedEnchantments](https://ae.advancedplugins.net) Plugin</i>
-
-
 </Callout>
 ---
-
 
 ## Tips for Customization
 
