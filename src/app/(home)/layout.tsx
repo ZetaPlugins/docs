@@ -21,6 +21,17 @@ export default function Layout({ children }: { children: ReactNode }) {
                         ),
                     },
                     {
+                        title: 'EssentialZ',
+                        url: '/essentialz',
+                        icon: (
+                            <img
+                                src="/img/esz.svg"
+                                alt="EssentialZ logo"
+                                style={{ borderRadius: '3px' }}
+                            />
+                        ),
+                    },
+                    {
                         title: 'LifeStealZ',
                         url: '/lifestealz',
                         icon: (

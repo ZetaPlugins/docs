@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-1115,0)">
+        <g id="EssentialZ_logo" transform="matrix(1.865508,0,0,2.10928,-1063.913442,-1139.011366)">
+            <rect x="1168" y="540" width="536.047" height="474.095" style="fill:none;"/>
+            <clipPath id="_clip1">
+                <rect x="1168" y="540" width="536.047" height="474.095"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g transform="matrix(1.105437,0,0,0.977882,-1412.01496,12.057137)">
+                    <rect x="2333.932" y="539.884" width="484.919" height="484.819" style="fill:rgb(186,124,248);"/>
+                </g>
+                <g transform="matrix(1.127971,0,0,0.99761,-1470.801577,7.018942)">
+                    <path d="M2725.364,571.607C2739.14,571.607 2752.351,577.079 2762.092,586.82C2771.833,596.561 2777.306,609.773 2777.306,623.548L2777.306,920.199C2777.306,933.975 2771.833,947.186 2762.092,956.927C2752.351,966.668 2739.14,972.14 2725.364,972.14L2428.714,972.14C2414.938,972.14 2401.726,966.668 2391.986,956.927C2382.245,947.186 2376.772,933.975 2376.772,920.199L2376.772,623.548C2376.772,609.773 2382.245,596.561 2391.986,586.82C2401.726,577.079 2414.938,571.607 2428.714,571.607L2725.364,571.607Z" style="fill:rgb(34,36,38);"/>
+                </g>
+                <g transform="matrix(0.381064,0.094776,-0.067174,0.211264,1282.955995,658.389701)">
+                    <path d="M706,235L372.432,1098.783L464,472L222,472L556.502,-391.783L464,235L706,235Z" style="fill:rgb(246,247,251);stroke:rgb(246,247,251);stroke-width:67.61px;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
