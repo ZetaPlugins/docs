@@ -1,0 +1,47 @@
+---
+title: The ZetaCorePlugin Class
+icon: Puzzle
+---
+
+The [ZetaCorePlugin](https://jd.zetacore.zetaplugins.com/com/zetaplugins/zetacore/ZetaCorePlugin.html) class extends the standard Bukkit `JavaPlugin` class that exposes the `getPluginFile` method to get the actual plugin `.jar` file and a method to initialize bStats metrics tracking.
+
+Here is an example of a basic plugin that extends `ZetaCorePlugin`:
+
+```java
+import com.zetaplugins.zetacore.ZetaCorePlugin;
+
+public final class MyPlugin extends ZetaCorePlugin {
+    @Override
+    public void onEnable() {
+        // Plugin startup logic
+    }
+
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+    }
+}
+```
+
+Here is an example on how you can initialize bStats metrics tracking in your plugin without having to copy the `Metrics` class into your project or shading it:
+
+```java
+import com.zetaplugins.zetacore.ZetaCorePlugin;
+import com.zetaplugins.zetacore.services.bStats.Metrics;
+
+public final class MyPlugin extends ZetaCorePlugin {
+    @Override
+    public void onEnable() {
+        int pluginId = 11111; // Replace with your actual bStats plugin ID
+        Metrics metrics = createBStatsMetrics(pluginId);
+
+        int randomNum = (int) (Math.random() * 1);
+        metrics.addCustomChart(new Metrics.SimplePie("random_num", () -> String.valueOf(randomNum)));
+    }
+
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+    }
+}
+```

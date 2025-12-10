@@ -1,0 +1,16 @@
+{
+    "title": "ZetaCore",
+    "description": "An easy to use Minecraft plugin framework",
+    "pages": [
+        "index",
+        "---Getting Started---",
+        "add_to_your_project",
+        "---Tutorials---",
+        "tutorials/index",
+        "tutorials/zetacoreplugin_class",
+        "tutorials/simple_commands",
+        "tutorials/command_registration"
+    ],
+    "defaultOpen": false,
+    "root": true
+}

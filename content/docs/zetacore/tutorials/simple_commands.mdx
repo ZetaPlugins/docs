@@ -1,0 +1,121 @@
+---
+title: Simple Commands
+description: Learn how to use the PluginCommand class to create simple commands in your ZetaCore plugin.
+icon: Terminal
+---
+
+ZetaCore keeps the command handling process similar to the standard Bukkit way but introduces the [PluginCommand](https://jd.zetacore.zetaplugins.com/com/zetaplugins/zetacore/commands/PluginCommand.html) class that implements the standard Bukkit `CommandExecutor` and `TabCompleter` classes with additional convenience features.
+
+## Basic Command Structure
+
+Here is an example of a simple command that greets the player when they use the `/greet` command:
+
+```java
+public class GreetCommand extends PluginCommand<MyPlugin> {
+
+    public GreetCommand(MyPlugin plugin) {
+        super(plugin);
+    }
+
+    @Override
+    public boolean execute(CommandSender sender, Command command, String label, ArgumentList args) throws CommandException {
+        String targetName = args.getArg(0);
+
+        Player targetPlayer = getPlugin().getServer().getPlayerExact(targetName);
+        if (targetPlayer == null) {
+            sender.sendMessage("Player " + targetName + " not found.");
+            return false;
+        }
+
+        sender.sendMessage("Hello, " + targetPlayer.getName() + "!");
+        return true;
+    }
+
+    @Override
+    public List<String> tabComplete(CommandSender sender, Command command, ArgumentList args) {
+        if (args.getCurrentArgIndex() == 0) return getPlayerOptions(args.getCurrentArg());
+        else return List.of();
+    }
+}
+```
+
+As you have seen in the example, we used `args.getCurrentArgIndex()` to determine which argument the user is currently typing for tab completion and `args.getCurrentArg()` to get the current argument string. The `PluginCommand` class also provided the `getDisplayOptions` and `getPlayerOptions` methods to help with tab completion.
+
+You can then register this command as you would with any other normal Bukkit command.
+
+## Using ArgumentList
+
+The `ArgumentList` class provides a convenient way to handle command arguments. You can easily retrieve arguments by their index, auto convert them to specific types, and provide default values.
+
+We can modify the previous example to use `ArgumentList` more effectively:
+
+```java
+@Override
+public boolean execute(CommandSender sender, Command command, String label, ArgumentList args) throws CommandException {
+    Player targetPlayer = args.getPlayer(0, getPlugin());
+
+    if (targetPlayer == null) {
+        sender.sendMessage("Player " + args.getString(0, "[no name]") + " not found.");
+        return false;
+    }
+
+    sender.sendMessage("Hello, " + targetPlayer.getName() + "!");
+    return true;
+}
+```
+
+In this example, we use `args.getPlayer(0, getPlugin())` to directly retrieve the player object from the first argument. If the player is not found, we use `args.getString(0, "[no name]")` to get the argument as a string with a default value.
+
+There are many more methods available in the `ArgumentList` class to help you handle different types of arguments easily. Be sure to check the [API documentation](https://jd.zetacore.zetaplugins.com/com/zetaplugins/zetacore/commands/ArgumentList.html) for more details.
+
+## Using CommandException
+
+To avoid repeating error handling code, you can use the `CommandException` class to throw exceptions when something goes wrong during command execution. You can find a list of built-in exceptions in the [API documentation](https://jd.zetacore.zetaplugins.com/com/zetaplugins/zetacore/commands/exceptions/package-summary.html), or you can create your own custom exceptions by extending the `CommandException` class.
+
+The `PluginCommand` class provides a `registerExceptionHandler` method that allows you to register custom exception handlers for specific `CommandException` types. We recommend making your own command class that extends `PluginCommand` and registering your exception handlers there so that all your commands can benefit from them. Here is an example of how to register a custom exception handler for the `CommandUsageException`:
+
+```java
+public abstract class MyPluginCommand extends PluginCommand<MyPlugin> {
+    public MyPluginCommand(MyPlugin plugin) {
+        super(plugin);
+
+        registerExceptionHandler(
+                CommandUsageException.class,
+                (ctx, exception) -> {
+                    ctx.getSender().sendMessage("Usage: " + exception.getUsage());
+                    return true;
+                }
+        );
+    }
+}
+```
+
+Now, any command that extends `MyPluginCommand` will automatically handle `CommandUsageException` by sending the usage message to the command sender.
+You can then modify the previous `GreetCommand` example to extend `MyPluginCommand` and throw a `CommandUsageException` if the player argument is missing:
+
+```java
+public class GreetCommand extends MyPluginCommand {
+    public GreetCommand(MyPlugin plugin) {
+        super(plugin);
+    }
+
+    @Override
+    public boolean execute(CommandSender sender, Command command, String label, ArgumentList args) throws CommandException {
+        if (args.size() < 1) {
+            throw new CommandUsageException("/greet <player>");
+        }
+
+        Player targetPlayer = args.getPlayer(0, getPlugin());
+
+        if (targetPlayer == null) {
+            sender.sendMessage("Player " + args.getString(0, "[no name]") + " not found.");
+            return false;
+        }
+
+        sender.sendMessage("Hello, " + targetPlayer.getName() + "!");
+        return true;
+    }
+}
+```
+
+In this modified example, if the user does not provide a player argument, a `CommandUsageException` is thrown, and the registered exception handler will send the correct usage message to the command sender.
