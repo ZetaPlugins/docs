@@ -1,7 +1,6 @@
 ---
 title: Command Registration
 description: Learn how to use the AutoCommandRegistrar to register commands automatically in your ZetaCore plugin.
-icon: Inbox
 ---
 
 For command registration, ZetaCore offers the [AutoCommandRegistrar](https://jd.zetacore.zetaplugins.com/com/zetaplugins/zetacore/services/commands/AutoCommandRegistrar.html) class which makes it easy to register commands by simply annotating your command classes with the `@AutoRegisterCommand` annotation.
@@ -17,12 +16,15 @@ public final class MyPlugin extends ZetaCorePlugin {
 
     @Override
     public void onEnable() {
+        // ... other initialization code ...
         var cmdRegistrar = new AutoCommandRegistrar.Builder()
                 .setPlugin(this)
                 .setPackagePrefix(PACKAGE_PREFIX)
+                //.setManagerRegistry(managerRegistry) // Optional: if you have a manager registry. This will be covered in a later tutorial.
                 .build();
         var commands = cmdRegistrar.registerAllCommands();
         getLogger().info("Registered commands: " + String.join(", ", commands));
+        // ... other initialization code ...
     }
 
     @Override

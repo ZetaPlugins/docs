@@ -1,0 +1,61 @@
+---
+title: Event Listener Registration
+description: Learn how to register event listeners in your ZetaCore-based Minecraft plugin using annotations.
+---
+
+ZetaCore simplifies event listener registration through the use of annotations, allowing you to easily handle events without the need for verbose boilerplate code.
+
+Here is an example of how to use the AutoCommandRegistrar to register commands automatically:
+
+```java
+import com.zetaplugins.zetacore.ZetaCorePlugin;
+import com.zetaplugins.zetacore.services.commands.AutoCommandRegistrar;
+
+public final class MyPlugin extends ZetaCorePlugin {
+    private static final String PACKAGE_PREFIX = "com.example.myplugin";// Replace with your actual package prefix
+
+    @Override
+    public void onEnable() {
+        // ... other initialization code ...
+        new AutoEventRegistrar.Builder()
+                .setPlugin(this)
+                .setPackagePrefix(PACKAGE_PREFIX)
+                //.setManagerRegistry(managerRegistry) // Optional: if you have a manager registry. This will be covered in a later tutorial.
+                .build()
+                .registerAllListeners();
+        // ... other initialization code ...
+    }
+
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+    }
+}
+```
+
+In this example, the `AutoEventRegistrar` is initialized with the plugin instance and the package prefix where your event listener classes are located. The `registerAllListeners()` method scans the specified package for classes annotated with `@EventListener` and registers them automatically.
+
+Make sure to replace `"com.example.myplugin"` with the actual package prefix of your plugin where the event listener classes are located.
+
+Here is an example of an event listener class using the `@AutoRegisterListener` annotation:
+
+```java
+import com.zetaplugins.zetacore.annotations.AutoRegisterListener;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
+
+@AutoRegisterListener
+public class PlayerMoveListener implements Listener {
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        event.getPlayer().sendMessage("You moved!");
+    }
+
+}
+```
+
+In this example, the `PlayerMoveListener` class is annotated with `@AutoRegisterListener`, indicating that it should be automatically registered as an event listener. The `onPlayerMove` method listens for `PlayerMoveEvent` and sends a message to the player whenever they move.
+
+With this setup, your event listeners will be registered automatically when your plugin is enabled, allowing you to focus on implementing your plugin's functionality without worrying about manual listener registration.

@@ -9,7 +9,8 @@
         "tutorials/index",
         "tutorials/zetacoreplugin_class",
         "tutorials/simple_commands",
-        "tutorials/command_registration"
+        "tutorials/command_registration",
+        "tutorials/listener_registration"
     ],
     "defaultOpen": false,
     "root": true
