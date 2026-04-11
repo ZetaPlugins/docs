@@ -10,7 +10,11 @@
         "tutorials/zetacoreplugin_class",
         "tutorials/simple_commands",
         "tutorials/command_registration",
-        "tutorials/listener_registration"
+        "tutorials/listener_registration",
+        "tutorials/manager_system",
+        "tutorials/localization",
+        "tutorials/messenger_system",
+        "tutorials/papi_service"
     ],
     "defaultOpen": false,
     "root": true

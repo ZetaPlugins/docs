@@ -1,0 +1,158 @@
+---
+title: Messenger System
+description: Learn how to send localized, placeholder-based messages using ZetaCore's messenger services.
+---
+
+ZetaCore's messenger system builds on localization and gives you a clean API for:
+
+- Sending localized messages by key
+- Sending ad-hoc raw messages
+- Sending message lists
+- Applying placeholder replacements
+- Supporting MiniMessage formatting and legacy color codes
+
+## Quick Start
+
+Here is a practical setup with `AdventureMessenger`:
+
+```java
+import com.zetaplugins.zetacore.services.di.ManagerRegistry;
+import com.zetaplugins.zetacore.services.events.ManagerRegistryBuilder;
+import com.zetaplugins.zetacore.services.localization.BukkitLocalizationService;
+import com.zetaplugins.zetacore.services.localization.LocalizationService;
+import com.zetaplugins.zetacore.services.messages.AdventureMessenger;
+import com.zetaplugins.zetacore.services.messages.Messenger;
+
+import java.util.List;
+
+public final class MyPlugin extends JavaPlugin {
+    private static final String PACKAGE_PREFIX = "com.example.myplugin";
+
+    @Override
+    public void onEnable() {
+        ManagerRegistry managerRegistry = new ManagerRegistryBuilder()
+                .setPlugin(this)
+                .setPackagePrefix(PACKAGE_PREFIX)
+                .setRequireManagerAnnotation(true)
+                .build();
+
+        LocalizationService localizationService = new BukkitLocalizationService.Builder()
+                .setPlugin(this)
+                .setPossibleLangs(List.of("en-US"))
+                .build();
+
+        Messenger messenger = new AdventureMessenger(localizationService);
+
+        managerRegistry.registerInstance(LocalizationService.class, localizationService);
+        managerRegistry.registerInstance(Messenger.class, messenger);
+    }
+}
+```
+
+This setup lets any manager class inject `Messenger` and send localized messages immediately.
+
+## Choosing a Messenger
+
+Use one of the provided implementations:
+
+- `AdventureMessenger`: sends Adventure `Component` messages
+- `LegacyMessenger`: converts output to legacy section-color strings before sending
+
+Both implementations share the same `Messenger` interface.
+
+## Sending Messages
+
+Inject and use `Messenger` in your manager classes:
+
+```java
+import com.zetaplugins.zetacore.annotations.InjectManager;
+import com.zetaplugins.zetacore.annotations.Manager;
+import com.zetaplugins.zetacore.services.messages.Messenger;
+import com.zetaplugins.zetacore.services.messages.Replaceable;
+import org.bukkit.command.CommandSender;
+
+@Manager
+public class WelcomeMessageService {
+    @InjectManager
+    private Messenger messenger;
+
+    public void sendWelcome(CommandSender sender, String playerName) {
+        messenger.send(
+                sender,
+                true,
+                "welcome",
+                "Welcome, %player%!",
+                new Replaceable<>("%player%", playerName)
+        );
+    }
+}
+```
+
+## API Methods
+
+`Messenger` exposes three methods:
+
+- `send(sender, addPrefix, path, fallback, replaceables...)`
+- `sendRaw(sender, rawMessage, replaceables...)`
+- `sendList(sender, path, replaceables...)`
+
+## Localization Keys Used by Messenger
+
+The base messenger service reads these keys:
+
+- `prefix` for optional prefixed output
+- `accentColor` used for `%ac%`
+- message keys passed into `send(...)` and `sendList(...)`
+
+Example language file:
+
+```yml
+prefix: '&8[<green>MyPlugin&8]'
+accentColor: '<#00D26A>'
+welcome: '&aWelcome, %player%!'
+errors:
+    noPermission: '&cYou do not have permission.'
+help:
+    - '&7Available commands:'
+    - '&a/myplugin reload'
+```
+
+## Placeholders and Colors
+
+You can replace your own placeholders with `Replaceable` values:
+
+```java
+new Replaceable<>("%player%", playerName)
+```
+
+Formatting behavior includes:
+
+- Legacy color codes (`&a`, `&c`, etc.) are mapped to MiniMessage tags
+- `%ac%` is replaced with the `accentColor` value
+- Prefix is added when `addPrefix` is `true` and prefix is not empty
+
+## Sending Lists
+
+To send multi-line help or info messages:
+
+```java
+messenger.sendList(
+        sender,
+        "help",
+        new Replaceable<>("%command%", "myplugin")
+);
+```
+
+## Common Pitfalls
+
+### Missing registration in manager registry
+
+If you inject `Messenger`, register an instance under `Messenger.class`.
+
+### Missing localization registration
+
+If your messenger depends on `LocalizationService`, register that service under `LocalizationService.class`.
+
+### Wrong message path
+
+Use keys that exist in your language file. For list output, the key must map to a YAML list.

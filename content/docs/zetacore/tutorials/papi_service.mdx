@@ -1,0 +1,189 @@
+---
+title: PAPI Service
+description: Learn how to register PlaceholderAPI placeholders in your ZetaCore-based plugin using PapiExpansionService.
+---
+
+ZetaCore includes `PapiExpansionService`, a helper around PlaceholderAPI expansion registration.
+
+It supports:
+
+- Exact placeholders (for example `my_value`)
+- Pattern placeholders (for example `stat_{name}`)
+- Annotation-based registration with `@Papi` and `@PapiParam`
+- Manual placeholder registration with lambdas
+
+## Quick Start
+
+Here is a basic setup in your plugin:
+
+```java
+import com.zetaplugins.zetacore.services.papi.PapiExpansionService;
+
+public final class MyPlugin extends JavaPlugin {
+    @Override
+    public void onEnable() {
+        if (!PapiExpansionService.hasPapi()) {
+            getLogger().warning("PlaceholderAPI not found. Skipping expansion registration.");
+            return;
+        }
+
+        PapiExpansionService papi = new PapiExpansionService(this)
+                .setIdentifier("myplugin")
+                .setAuthor("YourName")
+                .setVersion(getPluginMeta().getVersion());
+
+        papi.addPlaceholder("ping", (player, identifier) -> String.valueOf(player.getPing()));
+
+        boolean registered = papi.register();
+        if (!registered) {
+            getLogger().warning("Failed to register PlaceholderAPI expansion.");
+        }
+    }
+}
+```
+
+In this example, `%myplugin_ping%` will return the player's ping.
+
+## Annotation-Based Placeholders
+
+You can define placeholders by annotating methods with `@Papi`.
+
+```java
+import com.zetaplugins.zetacore.annotations.Papi;
+import org.bukkit.OfflinePlayer;
+
+public final class MyPlaceholders {
+    @Papi(identifier = "coins")
+    public String coins(OfflinePlayer player) {
+        // Replace this with your own data source
+        return "42";
+    }
+
+    @Papi(identifier = "player_name")
+    public String playerName(String playerName) {
+        return playerName;
+    }
+
+    @Papi(identifier = "server_name")
+    public String serverName() {
+        return "MyServer";
+    }
+}
+```
+
+Register all annotated methods from an object:
+
+```java
+PapiExpansionService papi = new PapiExpansionService(this)
+        .setIdentifier("myplugin")
+        .addAnnotatedPlaceholders(new MyPlaceholders());
+
+papi.register();
+```
+
+### Supported method signatures for exact placeholders
+
+For `@Papi(identifier = "some_key")`, methods can have:
+
+- no parameters
+- one `OfflinePlayer` parameter
+- one `Player` parameter
+- one `String` parameter (player name)
+
+## Pattern Placeholders
+
+Pattern placeholders are identifiers that include named tokens in braces.
+
+Example identifier pattern:
+
+```java
+@Papi(identifier = "stat_{name}")
+public String getStat(@PapiParam("name") String statName, OfflinePlayer player) {
+    return "value-for-" + statName;
+}
+```
+
+This supports placeholders like:
+
+- `%myplugin_stat_kills%`
+- `%myplugin_stat_deaths%`
+
+### Using typed params with `@PapiParam`
+
+`PapiExpansionService` converts pattern token strings to these parameter types:
+
+- `String`
+- `int` / `Integer`
+- `long` / `Long`
+- `double` / `Double`
+- `float` / `Float`
+- `boolean` / `Boolean`
+
+Example:
+
+```java
+@Papi(identifier = "multiply_{a}_{b}")
+public String multiply(
+        @PapiParam("a") int a,
+        @PapiParam("b") int b
+) {
+    return String.valueOf(a * b);
+}
+```
+
+Then `%myplugin_multiply_3_4%` returns `12`.
+
+## Manual Registration API
+
+You can also register placeholders directly:
+
+```java
+papi.addPlaceholder("online", (player, id) -> String.valueOf(Bukkit.getOnlinePlayers().size()));
+```
+
+This is helpful for very simple placeholders.
+
+## Player Null and Offline Handling
+
+`PapiExpansionService` lets you customize default messages:
+
+```java
+papi.setPlayerNotFoundMessage("N/A");
+papi.setPlayerNotOnlineMessage("offline");
+```
+
+Defaults:
+
+- player not found: `PlayerNotFound`
+- player offline where `Player` is required: `PlayerNotOnline`
+
+## Registration Requirements
+
+Before calling `register()`, ensure these are set:
+
+- identifier
+- author
+- version
+- placeholders map (managed automatically when using add methods)
+
+If required fields are missing, `register()` throws `IllegalStateException`.
+
+## Common Pitfalls
+
+### PlaceholderAPI not installed
+
+Always guard registration with `PapiExpansionService.hasPapi()`.
+
+### Wrong identifier format
+
+For PlaceholderAPI, the final format is `%<identifier>_<placeholder>%`.
+
+If your expansion identifier is `myplugin` and placeholder key is `coins`, the placeholder is `%myplugin_coins%`.
+
+### Mismatched `@PapiParam` names
+
+`@PapiParam("name")` must match a token in the pattern identifier, for example `{name}`.
+
+### Unsupported parameter types
+
+Pattern parameters only support the built-in scalar conversions listed above.

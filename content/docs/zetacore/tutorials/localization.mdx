@@ -1,0 +1,133 @@
+---
+title: Localization
+description: Learn how to load language files and read localized messages in your ZetaCore-based plugin.
+---
+
+ZetaCore includes a localization service that loads language YAML files from your plugin resources and lets you fetch translated strings by key.
+
+This guide shows how to configure `BukkitLocalizationService`, register it in the manager system, and use it from your classes.
+
+## Quick Start
+
+Here is a simple setup in your plugin:
+
+```java
+import com.zetaplugins.zetacore.services.di.ManagerRegistry;
+import com.zetaplugins.zetacore.services.events.ManagerRegistryBuilder;
+import com.zetaplugins.zetacore.services.localization.BukkitLocalizationService;
+import com.zetaplugins.zetacore.services.localization.LocalizationService;
+
+import java.util.List;
+
+public final class MyPlugin extends JavaPlugin {
+    private static final String PACKAGE_PREFIX = "com.example.myplugin";
+
+    @Override
+    public void onEnable() {
+        ManagerRegistry managerRegistry = new ManagerRegistryBuilder()
+                .setPlugin(this)
+                .setPackagePrefix(PACKAGE_PREFIX)
+                .setRequireManagerAnnotation(true)
+                .build();
+
+        LocalizationService localizationService = new BukkitLocalizationService.Builder()
+                .setPlugin(this)
+                .setPossibleLangs(List.of("en-US", "de-DE"))
+                .setFallbackLang("en-US")
+                .setLangFolder("lang/")
+                .setLangConfigOption("lang")
+                .build();
+
+        // Register under the interface so @InjectManager LocalizationService works.
+        managerRegistry.registerInstance(LocalizationService.class, localizationService);
+    }
+}
+```
+
+In this example, ZetaCore loads the selected language file based on your config option (default: `lang`) and falls back if the file is missing.
+
+## Language File Structure
+
+Example `lang/en-US.yml`:
+
+```yml
+prefix: '&8[<green>MyPlugin&8]'
+accentColor: '<#00D26A>'
+welcome: '&aWelcome, %player%!'
+help:
+    - '&7Use &a/myplugin help &7for commands'
+    - '&7Use &a/myplugin reload &7to reload config'
+```
+
+## Config Option
+
+Your plugin config can define the selected language:
+
+```yml
+lang: en-US
+```
+
+If the selected language file does not exist, the service automatically uses the configured fallback language.
+
+## Using the Service
+
+Inject and read single strings:
+
+```java
+import com.zetaplugins.zetacore.annotations.InjectManager;
+import com.zetaplugins.zetacore.annotations.Manager;
+import com.zetaplugins.zetacore.services.localization.LocalizationService;
+
+@Manager
+public class WelcomeService {
+    @InjectManager
+    private LocalizationService localization;
+
+    public String getWelcome(String playerName) {
+        return localization.getString("welcome", "Welcome!")
+                .replace("%player%", playerName);
+    }
+}
+```
+
+Read list messages:
+
+```java
+List<String> lines = localization.getStringList("help");
+```
+
+## Reloading Localization
+
+`BukkitLocalizationService` supports `reload()` for runtime updates.
+
+```java
+if (localizationService instanceof BukkitLocalizationService bukkitLocalization) {
+    bukkitLocalization.reload();
+}
+```
+
+This is useful for `/reload` style plugin commands.
+
+## Builder Options
+
+`BukkitLocalizationService.Builder` supports:
+
+- `setPlugin(JavaPlugin plugin)`
+- `setPossibleLangs(List<String> langs)`
+- `setFallbackLang(String fallbackLang)` (default: `en-US`)
+- `setLangFolder(String folder)` (default: `lang/`)
+- `setLangConfigOption(String configKey)` (default: `lang`)
+
+## Common Pitfalls
+
+### Missing resource files
+
+Make sure your language files exist in plugin resources, for example `src/main/resources/lang/en-US.yml`.
+
+### Injection into interface type
+
+When injecting `LocalizationService`, register your built service under `LocalizationService.class` in the registry.
+
+### Empty language list
+
+`setPossibleLangs(...)` is required and must not be empty.
