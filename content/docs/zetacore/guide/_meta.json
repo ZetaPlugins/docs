@@ -1,0 +1,10 @@
+{
+    "index": "Overview",
+    "plugin-base": "Plugin Base",
+    "dependency-injection": "Dependency Injection",
+    "commands": "Command Registration",
+    "events": "Event Registration",
+    "config": "Config Parsing",
+    "messaging": "Messaging",
+    "permissions": "Permission Registration"
+}
