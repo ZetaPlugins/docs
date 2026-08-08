@@ -10,25 +10,23 @@
         "restart": "pm2 restart zeta-docs"
     },
     "dependencies": {
-        "fumadocs-core": "15.6.3",
-        "fumadocs-mdx": "11.6.10",
-        "fumadocs-ui": "15.6.3",
-        "lucide-react": "^0.525.0",
-        "next": "15.3.4",
-        "react": "^19.1.0",
-        "react-dom": "^19.1.0",
-        "shiki": "^3.8.1"
+        "fumadocs-core": "16.14.2",
+        "fumadocs-mdx": "15.2.2",
+        "fumadocs-ui": "npm:@fumadocs/base-ui@ 16.14.2",
+        "lucide-react": "^1.28.0",
+        "next": "16.3.0",
+        "react": "^19.2.8",
+        "react-dom": "^19.2.8",
+        "shiki": "^4.4.2"
     },
     "devDependencies": {
-        "@tailwindcss/postcss": "^4.1.11",
-        "@types/mdx": "^2.0.13",
-        "@types/node": "24.0.7",
-        "@types/react": "^19.1.8",
-        "@types/react-dom": "^19.1.6",
-        "eslint": "^8",
-        "eslint-config-next": "15.3.4",
-        "postcss": "^8.5.6",
-        "tailwindcss": "^4.1.11",
-        "typescript": "^5.8.3"
+        "@tailwindcss/postcss": "^4.3.3",
+        "@types/mdx": "^2.0.14",
+        "@types/node": "^26.1.2",
+        "@types/react": "^19.2.18",
+        "@types/react-dom": "^19.2.4",
+        "postcss": "^8.5.25",
+        "tailwindcss": "^4.3.3",
+        "typescript": "^6.0.3"
     }
 }
