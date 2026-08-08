@@ -4,6 +4,7 @@
     "pages": [
         "index",
         "installation",
+        "permissions",
         "---Commands---",
         "commands/lifestealz",
         "commands/eliminate",
