@@ -1,6 +1,7 @@
 ---
 import type { MarkdownHeading } from 'astro';
 import '../styles/global.css';
+import interLatinUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Toc from '../components/Toc.astro';
@@ -47,6 +48,7 @@ const ogImage = new URL(ogImagePath(currentId || 'index'), Astro.site);
         <meta name="twitter:title" content={pageTitle} />
         {description && <meta name="twitter:description" content={description} />}
         <meta name="twitter:image" content={ogImage} />
+        <link rel="preload" href={interLatinUrl} as="font" type="font/woff2" crossorigin />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
         <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
