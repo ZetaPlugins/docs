@@ -1,34 +1,67 @@
 ---
 title: EssentialZ
+description: A modern, lightweight essentials plugin for Paper servers.
 icon: Zap
 ---
 
-EssentialZ is a powerful and versatile plugin, designed to enhance gameplay and provide server administrators with a wide range of tools and features. It is inspired by the popular EssentialsX plugin but has been rebuilt from the ground up specifically for modern Paper servers.
+EssentialZ gives your server the everyday commands players and staff expect, such as teleports, homes, warps and chat formatting. It's inspired by EssentialsX, but rebuilt from the ground up for modern Paper servers.
 
-EssentialsZ gives you the option to fully customize your experience without any bloat. You don't like a command? Disable it. You don't want to use the custom chat? Disable it. You want other chat colors? Change them with one line in the config. EssentialsZ strives to be highly configurable without overwhelming you with options.
+Everything is optional. Don't need a command? Disable it. Want different chat colors? Change one line in the config. EssentialZ stays configurable without burying you in options.
 
 ## Features
 
-- **Core Commands**: Provides essential commands for player management, teleportation, home setting, warps, and more.
-- **Chat Management**: Customizable chat formats, prefixes, suffixes, and channels to enhance communication on your server.
-- **Economy Integration**: Seamless integration with popular economy plugins to manage player balances, transactions, and shops.
-- **Permissions Support**: Compatible with major permissions plugins, allowing for granular control over command access and features.
-- **Moderation Tools**: Includes tools for muting, banning, kicking players, and managing player behavior. (_Coming Soon_)
-- **Customizable Configuration**: Easy-to-edit configuration files that allow server admins to tailor the plugin to their specific needs.
-- **Fully customizable Messages and Branding**: Change every message the plugin sends to players to fit your server's theme.
-- **Disabling Commands/Features**: Disable any command or feature you don't want to use, keeping your server clean and efficient.
+**Commands**
 
-## Support
+- Teleportation, homes, warps and player management
+- Disable any command or feature you don't use
 
-If you need further help with EssentialZ, you can join in our [Discord Server](https://strassburger.org/discord). You can either ask in the #support channel or create a Ticket.
+**Chat**
 
-## Links
+- Custom chat formats, prefixes and suffixes
+- Every message editable to match your server's style
 
-- [GitHub](https://github.com/ZetaPlugins/EssentialZ)
-- [Modrinth](https://modrinth.com/plugin/essential_z)
-- [Hangar](https://hangar.papermc.io/KartoffelChipss/EssentialZ)
-- [Support Discord](https://strassburger.org/discord)
-- [bStats](https://bstats.org/plugin/bukkit/EssentialZ/28159)
-- [JavaDoc](https://jd.esz.zetaplugins.com/)
+**Integrations**
 
-[![Usage](https://bstats.org/signatures/bukkit/EssentialZ.svg)](https://bstats.org/plugin/bukkit/EssentialZ/28159)
+- Economy support through Vault
+- PlaceholderAPI placeholders
+- Works with all major permission plugins
+
+**Coming soon**
+
+- Moderation tools for muting, banning and kicking
+
+## Getting started
+
+::::cards
+:::card{href="/essentialz/installation" title="Installation" icon="Download"}
+Install EssentialZ on your server.
+:::
+::::
+
+## Resources
+
+::::cards
+:::card{href="https://modrinth.com/plugin/essential_z" title="Modrinth" icon="Modrinth"}
+Download the latest version.
+:::
+
+:::card{href="https://hangar.papermc.io/KartoffelChipss/EssentialZ" title="Hangar" icon="Hangar"}
+Download from PaperMC's plugin repository.
+:::
+
+:::card{href="https://strassburger.org/discord" title="Support Discord" icon="Discord"}
+Ask questions in #support or open a ticket.
+:::
+
+:::card{href="https://github.com/ZetaPlugins/EssentialZ" title="GitHub" icon="GitHub"}
+Source code, issues and feature requests.
+:::
+
+:::card{href="https://jd.esz.zetaplugins.com/" title="JavaDoc" icon="BookOpen"}
+API reference for developers.
+:::
+
+:::card{href="https://bstats.org/plugin/bukkit/EssentialZ/28159" title="bStats" icon="ChartColumn"}
+Usage statistics across all servers.
+:::
+::::

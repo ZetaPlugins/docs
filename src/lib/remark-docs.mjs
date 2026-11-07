@@ -6,6 +6,7 @@
  *   ::::tabs + :::tab[Label]                             -> tab groups
  *   :::steps                                             -> numbered steps (one per ### heading)
  *   ::::cards + :::card{href="..." title="..." icon="Package"}  -> link cards
+ *       (icon: a lucide name, or the name of a brand icon in src/components/icons, e.g. "Discord")
  *   :::files (containing a nested list)                  -> file tree
  *
  * It also resolves relative links (`guide/commands`, `messages.md#formatting`)
@@ -80,8 +81,35 @@ function lucideSvg(name) {
     return svg;
 }
 
+/*
+ * Brand icons (Discord, GitHub, Modrinth, ...) live as Astro components in src/components/icons.
+ * Markdown can't render components, so the <svg> markup is read straight from the file.
+ */
+const CUSTOM_ICONS_DIR = path.resolve('src/components/icons');
+
+function customSvg(name) {
+    const file = path.join(CUSTOM_ICONS_DIR, `${name}.astro`);
+    if (!/^\w+$/.test(name) || !fs.existsSync(file)) return null;
+    const markup = fs.readFileSync(file, 'utf8').match(/<svg[\s\S]*<\/svg>/)?.[0];
+    if (!markup) return null;
+    return markup
+        .replace(/\s*\{\.\.\.props\}/, '')
+        .replace(/\s*role="img"/, '')
+        .replace(/<title>[\s\S]*?<\/title>\s*/, '')
+        .replace(
+            /^<svg/,
+            (tag) => `${tag} aria-hidden="true"${/^<svg[^>]*\sfill=/.test(markup) ? '' : ' fill="currentColor"'}`,
+        );
+}
+
+function iconSvg(name) {
+    const key = `custom:${name}`;
+    if (!iconCache.has(key)) iconCache.set(key, customSvg(name));
+    return iconCache.get(key) ?? lucideSvg(name);
+}
+
 const icon = (name) => {
-    const svg = lucideSvg(name);
+    const svg = iconSvg(name);
     return svg ? html(svg) : null;
 };
 
@@ -136,7 +164,7 @@ function card(node) {
         'a',
         { className: ['card'], href, ...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {}) },
         [
-            ...(iconName && lucideSvg(iconName) ? [el('span', { className: ['card-icon'] }, [icon(iconName)])] : []),
+            ...(iconName && iconSvg(iconName) ? [el('span', { className: ['card-icon'] }, [icon(iconName)])] : []),
             el('span', { className: ['card-title'] }, [text(title)]),
             el(
                 'span',
