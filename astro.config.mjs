@@ -5,6 +5,7 @@ import remarkDirective from 'remark-directive';
 import { remarkDocs } from './src/lib/remark-docs.mjs';
 
 export default defineConfig({
+    site: 'https://docs.zetaplugins.com',
     markdown: {
         processor: unified({
             remarkPlugins: [remarkDirective, remarkDocs],
