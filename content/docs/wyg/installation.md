@@ -1,0 +1,31 @@
+---
+title: Installation
+icon: Download
+---
+
+::::steps
+
+### Download the Plugin
+
+To install WYG on your server, you first need to download the latest version of WYG from a trusted platform such as [Modrinth](https://modrinth.com/plugin/WYG/versions), or any other **official** platform.
+
+:::warning
+**Be alert:** This plugin is only available on its official
+[GitHub](https://github.com/ZetaPlugins/WYG) and
+[Modrinth](https://modrinth.com/plugin/WYG) pages. Any versions found on third-party sites
+like 9Minecraft.net are **unauthorized and may contain malware**. Always download from official
+sources to stay safe.
+:::
+
+### Upload
+
+After downloading the `.jar` file, upload it to the `plugins` directory of your server. If your host provides you with a panel, this directory is often found under a section named `Files` or `File Manager`.
+
+### Finalizing
+
+Before you can play with WYG, you'll have to restart the server once, so the plugin can be loaded.
+
+If you want to check that WYG is installed correctly, you can either try to use `/pl` and check if WYG is green.
+
+If either of these commands fail, or provide an error, seek [_support_](https://strassburger.org/discord)!
+::::

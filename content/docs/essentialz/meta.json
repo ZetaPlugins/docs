@@ -1,7 +1,7 @@
 {
     "title": "EssentialZ",
     "description": "The EssentialZ plugin",
-    "pages": ["index", "installation"],
-    "defaultOpen": false,
-    "root": true
+    "logo": "/img/esz.svg",
+    "accent": "#9d5cf5",
+    "pages": ["index", "installation"]
 }

@@ -1,0 +1,16 @@
+{
+    "title": "ZetaPlugins",
+    "description": "Open-source Minecraft plugins",
+    "logo": "/img/z.svg",
+    "pages": ["index", "localization"],
+    "products": [
+        "essentialz",
+        "lifestealz",
+        "serverlinksz",
+        "cookieclickerz",
+        "timberz",
+        "netwatchz",
+        "wyg",
+        "zetacore"
+    ]
+}

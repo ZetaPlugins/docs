@@ -1,0 +1,74 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import DocsLayout from '../layouts/DocsLayout.astro';
+import { getProducts, hrefFor, productFor } from '../lib/nav';
+import { Pencil } from '@lucide/astro';
+
+export async function getStaticPaths() {
+    const entries = await getCollection('docs');
+    return entries.map((entry) => ({
+        params: { slug: hrefFor(entry.id).slice(1) || undefined },
+        props: { entry },
+    }));
+}
+
+interface Props {
+    entry: CollectionEntry<'docs'>;
+}
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const products = await getProducts();
+const product = await productFor(entry);
+
+const index = product.pages.findIndex((p) => p.id === entry.id);
+const prev = index > 0 ? product.pages[index - 1] : undefined;
+const next = index >= 0 ? product.pages[index + 1] : undefined;
+const editUrl = `https://github.com/ZetaPlugins/docs/edit/main/content/docs/${entry.id}.md`;
+---
+
+<DocsLayout
+    title={entry.data.title}
+    description={entry.data.description}
+    products={products}
+    product={product}
+    currentId={entry.id}
+    headings={headings}
+>
+    <article data-pagefind-body>
+        <header class="page-header">
+            {product.slug && (
+                <p class="page-eyebrow" data-pagefind-meta="product">
+                    {product.title}
+                </p>
+            )}
+            <h1 data-pagefind-meta="title">{entry.data.title}</h1>
+            {entry.data.description && <p class="page-description">{entry.data.description}</p>}
+        </header>
+        <div class="prose">
+            <Content />
+        </div>
+    </article>
+
+    <footer class="page-footer">
+        <a class="edit-link" href={editUrl} target="_blank" rel="noopener noreferrer">
+            <Pencil size={15} aria-hidden="true" />
+            Edit this page on GitHub
+        </a>
+        <nav class="pager" aria-label="Previous and next page">
+            {prev ? (
+                <a class="pager-link prev" href={prev.href}>
+                    <span class="pager-label">Previous</span>
+                    <span class="pager-title">{prev.title}</span>
+                </a>
+            ) : (
+                <span />
+            )}
+            {next && (
+                <a class="pager-link next" href={next.href}>
+                    <span class="pager-label">Next</span>
+                    <span class="pager-title">{next.title}</span>
+                </a>
+            )}
+        </nav>
+    </footer>
+</DocsLayout>

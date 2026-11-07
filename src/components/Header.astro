@@ -1,0 +1,44 @@
+---
+import { Menu, Moon, Search, Sun } from '@lucide/astro';
+import GitHubIcon from './GitHubIcon.astro';
+import Logo from './Logo.astro';
+---
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="header-start">
+            <button class="icon-button menu-button" type="button" aria-label="Open navigation" data-menu-toggle>
+                <Menu size={20} aria-hidden="true" />
+            </button>
+            <a class="brand" href="/" aria-label="ZetaPlugins docs home">
+                <Logo />
+            </a>
+        </div>
+        <div class="header-main">
+            <button class="search-button" type="button" data-search-open>
+                <Search size={16} aria-hidden="true" />
+                <span>Search docs</span>
+                <kbd>⌘K</kbd>
+            </button>
+        </div>
+        <div class="header-actions">
+            <a
+                class="icon-button"
+                href="https://github.com/ZetaPlugins"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="ZetaPlugins on GitHub"
+            >
+                <GitHubIcon />
+            </a>
+            <button class="icon-button" type="button" aria-label="Toggle dark mode" data-theme-toggle>
+                <span class="theme-icon-light">
+                    <Sun size={20} aria-hidden="true" />
+                </span>
+                <span class="theme-icon-dark">
+                    <Moon size={20} aria-hidden="true" />
+                </span>
+            </button>
+        </div>
+    </div>
+</header>

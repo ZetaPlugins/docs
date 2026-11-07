@@ -1,0 +1,19 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import { getProducts } from '../lib/nav';
+
+const products = await getProducts();
+---
+
+<DocsLayout title="Page not found" products={products} product={products[0]} currentId="">
+    <header class="page-header">
+        <p class="page-eyebrow">404</p>
+        <h1>Page not found</h1>
+        <p class="page-description">The page you are looking for doesn't exist or has moved.</p>
+    </header>
+    <p>
+        <a class="button" href="/">
+            Back to the docs home
+        </a>
+    </p>
+</DocsLayout>

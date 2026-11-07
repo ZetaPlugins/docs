@@ -1,22 +1,24 @@
 {
     "title": "ZetaCore",
     "description": "An easy to use Minecraft plugin framework",
+    "icon": "Wrench",
     "pages": [
         "index",
         "---Getting Started---",
-        "add_to_your_project",
-        "---Guide---",
-        "guide/index",
-        "guide/plugin-base",
-        "guide/dependency-injection",
-        "guide/commands",
-        "guide/events",
-        "guide/config",
-        "guide/messaging",
-        "guide/permissions",
-        "guide/papi",
-        "guide/update-checker"
-    ],
-    "defaultOpen": false,
-    "root": true
+        "setup",
+        "first-plugin",
+        "---The Basics---",
+        "commands",
+        "events",
+        "services",
+        "config",
+        "messages",
+        "---Extras---",
+        "permissions",
+        "conditions",
+        "placeholders",
+        "updates-and-metrics",
+        "---Help---",
+        "troubleshooting"
+    ]
 }

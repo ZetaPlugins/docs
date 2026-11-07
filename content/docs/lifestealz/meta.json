@@ -1,6 +1,8 @@
 {
     "title": "LifeStealZ",
     "description": "The LifeStealZ plugin",
+    "logo": "/img/lsz.svg",
+    "accent": "#dc1f1f",
     "pages": [
         "index",
         "installation",
@@ -20,7 +22,5 @@
         "crosspluginsupport/worldguard",
         "---Developer API---",
         "dev/usinglszapi"
-    ],
-    "defaultOpen": false,
-    "root": true
+    ]
 }

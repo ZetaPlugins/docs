@@ -1,0 +1,15 @@
+---
+// The full module also exports aliases (e.g. TriangleAlert), which `icons` alone does not.
+import * as lucide from '@lucide/astro';
+
+interface Props {
+    name: string;
+    size?: number;
+    class?: string;
+}
+const { name, size = 16, class: className } = Astro.props;
+const Icon = /^[A-Z]/.test(name) ? (lucide as Record<string, any>)[name] : undefined;
+if (!Icon) console.warn(`[docs] Unknown lucide icon "${name}" — see https://lucide.dev/icons`);
+---
+
+{Icon && <Icon size={size} class={className} aria-hidden="true" />}

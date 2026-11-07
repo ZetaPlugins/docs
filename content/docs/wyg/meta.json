@@ -1,16 +1,15 @@
 {
     "title": "WYG",
     "description": "What'd Ya Got",
+    "logo": "/img/wyg.svg",
+    "accent": "#d4900f",
     "pages": [
-      "index",
-      "installation",
-      "---Customization---",
-      "config/config",
-      "config/example",
-      "---Commands and Permissions---",
-      "commands/commands"
-
-    ],
-    "defaultOpen": false,
-    "root": true
+        "index",
+        "installation",
+        "---Customization---",
+        "config/config",
+        "config/example",
+        "---Commands and Permissions---",
+        "commands/commands"
+    ]
 }
