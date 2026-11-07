@@ -68,7 +68,7 @@ Browse the source, open issues and send pull requests.
 :::
 
 :::card{href="/localization" title="Translate" icon="Languages"}
-Help translate our plugins into your language with GitLocalize.
+Help translate our plugins into your language on Twoglot.
 :::
 
 :::card{href="https://modrinth.com/organization/zetaplugins" title="Modrinth" icon="Modrinth"}
