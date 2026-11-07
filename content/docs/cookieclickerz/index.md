@@ -4,7 +4,7 @@ description: The classic Cookie Clicker game, playable on your Minecraft server.
 icon: Cookie
 ---
 
-CookieClickerZ brings Cookie Clicker to Minecraft. You place clicker blocks anywhere in your world, and players click them to bake cookies. Those cookies buy upgrades that bake even more cookies, even while the player is offline.
+CookieClickerZ brings Cookie Clicker to Minecraft. You place clicker blocks anywhere in your world, and players click them to bake cookies. Those cookies buy upgrades that bake even more cookies per click, and keep earning while the player is offline.
 
 It works out of the box with a classic Cookie Clicker experience, and you can customize everything from upgrades to sounds if you want your own version.
 
@@ -12,8 +12,9 @@ It works out of the box with a classic Cookie Clicker experience, and you can cu
 
 - **Left-click** a clicker block to bake cookies.
 - **Right-click** it to open the menu with upgrades, achievements, prestige and the top list.
-- Upgrades keep producing cookies, including while players are offline.
+- Upgrades add cookies per click and earn cookies while players are offline.
 - Prestige to earn a permanent cookie multiplier.
+- Random events like Cookie Frenzy boost (or ruin) a player's cookies.
 
 ## Features
 
@@ -23,7 +24,7 @@ It works out of the box with a classic Cookie Clicker experience, and you can cu
 - Customizable upgrades, events and achievements
 - Prestige system and a top list
 - Offline cookie gathering
-- Built-in anti-cheat that limits clicks per second
+- Built-in anti-cheat against fast clicking and auto-clickers
 
 **Customization**
 
@@ -41,6 +42,26 @@ Install CookieClickerZ on your server.
 
 :::card{href="/cookieclickerz/getting_started" title="Getting Started" icon="Rocket"}
 Create your first clicker block and start baking.
+:::
+::::
+
+## Learn more
+
+::::cards
+:::card{href="/cookieclickerz/gameplay/clicking" title="Gameplay" icon="MousePointerClick"}
+How cookies, upgrades, prestige, events and achievements work.
+:::
+
+:::card{href="/cookieclickerz/commands" title="Commands" icon="Terminal"}
+Every command and permission at a glance.
+:::
+
+:::card{href="/cookieclickerz/config" title="Configuration" icon="Wrench"}
+All options in the config.yml.
+:::
+
+:::card{href="/cookieclickerz/integrations/placeholderapi" title="PlaceholderAPI" icon="Braces"}
+Show cookies and leaderboards in other plugins.
 :::
 ::::
 
