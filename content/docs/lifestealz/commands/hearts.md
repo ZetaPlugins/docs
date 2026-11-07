@@ -1,13 +1,32 @@
 ---
 title: /hearts
-description: Shows the amount of hearts a player has.
+description: Show how many hearts you or another player have
 icon: MessageCircleHeart
 ---
 
-## Usage
+Shows how many max hearts you or another player currently have.
 
-### /hearts \[player]
+```plaintext
+/hearts [player]
+```
 
-Permission: `lifestealz.viewhearts` (default: true)
+| Argument   | Description                                                         |
+| ---------- | ------------------------------------------------------------------- |
+| `[player]` | An online or offline player. If omitted, your own hearts are shown. |
 
-Shows you the amount of hearts, a player has. If no player is specified, it shows your hearts.
+## Examples
+
+```plaintext
+/hearts
+/hearts Steve
+```
+
+:::tip
+To change a player's hearts, use [`/lifestealz hearts`](lifestealz#lifestealz-hearts).
+:::
+
+## Permission
+
+| Permission              | Default |
+| ----------------------- | ------- |
+| `lifestealz.viewhearts` | true    |

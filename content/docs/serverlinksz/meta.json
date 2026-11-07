@@ -7,6 +7,8 @@
         "index",
         "installation",
         "---Commands---",
+        "commands/index",
+        "commands/link",
         "commands/sl_add",
         "commands/sl_remove",
         "---Customization---",
