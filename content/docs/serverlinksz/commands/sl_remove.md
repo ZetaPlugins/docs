@@ -1,30 +1,32 @@
 ---
-title: Remove a Link
+title: /sl remove
+description: Remove an existing server link
 icon: Minus
 ---
 
-## Description
-
-The `/sl remove` command is used to remove an existing link from the server.
-
-## Usage
+Removes a link from the server's links menu and from `links.yml`.
 
 ```plaintext
 /sl remove <id>
 ```
 
-## Arguments
-
-- `<id>`: The ID of the link. This must be unique and cannot be the same as any other link ID.
+| Argument | Description                              |
+| -------- | ---------------------------------------- |
+| `<id>`   | ID of the link to remove. Tab-completes. |
 
 ## Examples
 
 ```plaintext
 /sl remove discord
-/sl remove website
 /sl remove store
 ```
 
-## Permissions
+:::note
+Players need to rejoin to see the change.
+:::
 
-- `serverlinksz.admin`: Allows the user to use the `/sl remove` command.
+## Permission
+
+| Permission           | Default |
+| -------------------- | ------- |
+| `serverlinksz.admin` | op      |

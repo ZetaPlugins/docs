@@ -3,5 +3,21 @@
     "description": "The TimberZ plugin",
     "logo": "/img/tz.svg",
     "accent": "#16a34a",
-    "pages": ["index", "installation"]
+    "pages": [
+        "index",
+        "installation",
+        "getting_started",
+        "---Guide---",
+        "guide/felling",
+        "guide/access",
+        "guide/enchantment",
+        "---Commands---",
+        "commands",
+        "---Configuration---",
+        "config/index",
+        "config/blocks",
+        "config/messages",
+        "---Integrations---",
+        "integrations"
+    ]
 }

@@ -3,5 +3,24 @@
     "description": "The CookieClickerZ plugin",
     "logo": "/img/ccz.svg",
     "accent": "#d2691e",
-    "pages": ["index", "installation", "getting_started"]
+    "pages": [
+        "index",
+        "installation",
+        "getting_started",
+        "---Gameplay---",
+        "gameplay/clicking",
+        "gameplay/upgrades",
+        "gameplay/prestige",
+        "gameplay/events",
+        "gameplay/achievements",
+        "---Commands---",
+        "commands/index",
+        "commands/cookieclicker",
+        "---Configuration---",
+        "config/index",
+        "config/messages",
+        "---Integrations---",
+        "integrations/placeholderapi",
+        "integrations/holograms"
+    ]
 }

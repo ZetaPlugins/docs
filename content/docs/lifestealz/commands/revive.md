@@ -1,15 +1,37 @@
 ---
 title: /revive
-description: Revive a player without using a revive crystal
+description: Revive an eliminated player without a revive crystal
 icon: Ambulance
 ---
 
-## Usage
+Revives an eliminated player without needing a revive crystal.
 
-### /revive \[player] \<bypass>
+```plaintext
+/revive <player | *> [bypass]
+```
 
-Permission: `lifestealz.admin.revive` (default: true)
+| Argument   | Description                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------------- |
+| `<player>` | The eliminated player to revive. Tab-completes with eliminated players. Use `*` to revive everyone. |
+| `[bypass]` | Ignore the revive limit. Requires `lifestealz.bypassrevivelimit`.                                   |
 
-Revive a player, without having to use a revive crystal.
+## What happens
 
-If a player has reached the revive limit (Changeable in the config) and you have the `lifestealz.bypassrevivelimit` permission, you can add `bypass` at the end of the command to bypass that limit.
+The player's hearts are set to `reviveHearts` from the config, and their revive counter goes up by one. They can join the server again right away.
+
+Only eliminated players can be revived. If a player has already been revived `maxRevives` times, the command fails unless you add `bypass`.
+
+## Examples
+
+```plaintext
+/revive Steve
+/revive Steve bypass
+/revive *
+```
+
+## Permissions
+
+| Permission                     | Description             | Default |
+| ------------------------------ | ----------------------- | ------- |
+| `lifestealz.admin.revive`      | Use `/revive`           | op      |
+| `lifestealz.bypassrevivelimit` | Use the `bypass` option | op      |

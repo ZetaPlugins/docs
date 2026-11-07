@@ -1,35 +1,65 @@
 ---
 title: Localization
-description: Learn how to contribute to the translations of our plugins using GitLocalize.
+description: Help translate our plugins into your language on Twoglot.
 icon: Globe
 ---
 
-You want to help translate one of our plugins? Here you'll learn how.
+Our plugins are translated by the community on [Twoglot](https://twoglot.com/@KartoffelChipss). You don't need to know how to code or use Git. You translate in your browser, and Twoglot turns approved translations into pull requests on GitHub.
 
-We are using a tool called GitLocalize to manage translations for LifeStealZ. If you want to contribute to the translations, you'll need to sign in to [GitLocalize](https://gitlocalize.com/) with a GitHub Account. If you don't already have one, you can create one [here](https://github.com/signup).
+## Translatable plugins
 
-## Translateable Plugins
+Pick a plugin to see which languages it has and how much of each is already translated.
 
-Here is a list of our plugins that are currently using GitLocalize for translations:
+::::cards
+:::card{href="https://twoglot.com/@KartoffelChipss/lifestealz" title="LifeStealZ" logo="/img/lsz.svg" accent="#dc1f1f"}
+Translate LifeStealZ on Twoglot.
+:::
 
-- [LifeStealZ](https://gitlocalize.com/repo/10381)
-- [ServerLinksZ](https://gitlocalize.com/repo/10273)
-- [CookieClickerZ](https://gitlocalize.com/repo/10275)
-- [TimberZ](https://gitlocalize.com/repo/10274)
+:::card{href="https://twoglot.com/@KartoffelChipss/essentialz" title="EssentialZ" logo="/img/esz.svg" accent="#9d5cf5"}
+Translate EssentialZ on Twoglot.
+:::
+
+:::card{href="https://twoglot.com/@KartoffelChipss/serverlinksz" title="ServerLinksZ" logo="/img/slz.svg" accent="#0a7cff"}
+Translate ServerLinksZ on Twoglot.
+:::
+
+:::card{href="https://twoglot.com/@KartoffelChipss/cookieclickerz" title="CookieClickerZ" logo="/img/ccz.svg" accent="#d2691e"}
+Translate CookieClickerZ on Twoglot.
+:::
+
+:::card{href="https://twoglot.com/@KartoffelChipss/timberz" title="TimberZ" logo="/img/tz.svg" accent="#16a34a"}
+Translate TimberZ on Twoglot.
+:::
+::::
 
 ## How to contribute
 
-To start translating, follow these steps:
+::::steps
 
-1. Go to the GitLocalize page of the plugin you want to translate.
-2. Click on the "Sign in with GitHub" button and authorize GitLocalize to access your GitHub account.
-3. Once signed in, you'll see a list of languages. Click on the language you want to translate.
-4. You will see a list of files that can be translated. Click on a file to start translating.
-5. For each string, you can enter your translation in the text box provided. Make sure to keep the original meaning and context of the string.
-6. After you are done translating, create a review request by clicking the yellow button in the top right corner.
+### Sign in
 
-If the language, you want to translate to is not yet present in the list, please open a ticket on the [Discord](https://strassburger.org/discord).
+Open the plugin's page on Twoglot and click **Sign in with GitHub**. If you don't have a GitHub account yet, you can [create one for free](https://github.com/signup).
 
-## Discord Role
+### Choose a language
 
-When you have contributed to translations, you can request a Translator role in the [Discord Server](https://strassburger.org/discord). This role will give you access to the #translations channel, where you can discuss translations with other translators and the plugin developers.
+The **Overview** tab lists every language with its progress. Open the **Translate** tab and pick the language you want to work on.
+
+### Translate
+
+Enter a translation for each text. Turn on **Hide already translated** to only see what's missing, or use **Guided mode** to go through the missing texts one by one.
+
+Keep the original meaning, and leave placeholders like `%player%` and formatting tags like `<red>` exactly as they are.
+
+### Submit for review
+
+Click **Submit changes for review** when you're done. Once your submission is approved, it's opened as a pull request on the plugin's GitHub repository with your name on it, and becomes part of the plugin once it's merged.
+
+::::
+
+:::tip[Your language is missing?]
+New languages can only be added by the project owner. Open a ticket on our [Discord server](https://strassburger.org/discord) and we'll add it for you.
+:::
+
+## Translator role
+
+Once you've contributed translations, you can request the **Translator** role on our [Discord server](https://strassburger.org/discord). It gives you access to the #translations channel, where you can talk with other translators and the developers.
