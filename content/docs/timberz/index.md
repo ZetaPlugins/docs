@@ -17,6 +17,12 @@ You decide who gets to use it and how: always on, toggled per player, only with 
 - Automatic replanting
 - Configurable tree types, tree size limits and axe durability cost
 
+**Integrations**
+
+- WorldGuard region flag
+- PlaceholderAPI placeholder
+- AuraSkills Foraging XP
+
 **Access control**
 
 - Toggleable timber mode per player
@@ -33,6 +39,30 @@ You decide who gets to use it and how: always on, toggled per player, only with 
 ::::cards
 :::card{href="/timberz/installation" title="Installation" icon="Download"}
 Install TimberZ on your server.
+:::
+
+:::card{href="/timberz/getting_started" title="Getting Started" icon="Rocket"}
+Fell your first tree and pick a setup.
+:::
+::::
+
+## Learn more
+
+::::cards
+:::card{href="/timberz/guide/access" title="Who Can Use Timber" icon="KeyRound"}
+Toggle mode, the enchantment and custom axes.
+:::
+
+:::card{href="/timberz/commands" title="Commands" icon="Terminal"}
+All commands and permissions.
+:::
+
+:::card{href="/timberz/config" title="Configuration" icon="Wrench"}
+All options in the config.yml.
+:::
+
+:::card{href="/timberz/integrations" title="Integrations" icon="Puzzle"}
+WorldGuard, PlaceholderAPI and AuraSkills.
 :::
 ::::
 
