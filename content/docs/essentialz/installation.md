@@ -3,6 +3,10 @@ title: Installation
 icon: Download
 ---
 
+:::warning[Alpha software]
+EssentialZ is still in **alpha** and may contain bugs or introduce breaking changes between versions. We recommend testing it on a non-production server first and keeping backups.
+:::
+
 ::::steps
 
 ### Download the Plugin

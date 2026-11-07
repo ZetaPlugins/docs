@@ -1,8 +1,12 @@
 ---
 title: EssentialZ
-description: A modern, lightweight essentials plugin for Paper servers.
+description: A modern, lightweight essentials plugin for Paper servers. Currently in alpha.
 icon: Zap
 ---
+
+:::warning[Alpha software]
+EssentialZ is still in **alpha**. Expect bugs, missing features and breaking changes between versions, including to the config and data files. Back up your server before updating, and please report any issues on [GitHub](https://github.com/ZetaPlugins/EssentialZ/issues) or the [Support Discord](https://strassburger.org/discord).
+:::
 
 EssentialZ gives your server the everyday commands players and staff expect, such as teleports, homes, warps and chat formatting. It's inspired by EssentialsX, but rebuilt from the ground up for modern Paper servers.
 

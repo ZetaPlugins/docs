@@ -32,7 +32,7 @@ Show off your items in chat with a hoverable preview.
 
 ::::cards
 :::card{href="/essentialz" title="EssentialZ" logo="/img/esz.svg"}
-Teleports, homes, warps and chat formatting, rebuilt for modern Paper.
+Teleports, homes, warps and chat formatting, rebuilt for modern Paper. _(Alpha)_
 :::
 
 :::card{href="/serverlinksz" title="ServerLinksZ" logo="/img/slz.svg"}
