@@ -1,40 +1,81 @@
 ---
 title: ZetaPlugins
-description: High-quality, open-source Minecraft plugins that are highly customizable and easy to use.
+description: Open-source Minecraft plugins that are easy to set up and customizable down to the last message.
 icon: Zap
 ---
 
-Welcome to ZetaPlugins where we create **high-quality**, **open-source** plugins for Minecraft. Our plugins are **highly customizable** but also **easy to use**.
+ZetaPlugins makes free, open-source plugins for Paper servers. Every plugin works out of the box with sensible defaults, and every message, item and feature can be changed when you want to make it your own.
 
-## Plugin Docs
+These docs explain how to install, configure and use each plugin. Pick a plugin below, or switch between plugins with the menu at the top of the sidebar.
 
-You can find the docs for our plugins in the sidebar. If you want to go back to this page, just click on the logo in the top left corner.
+## Gameplay
 
-## Contributing
+::::cards
+:::card{href="/lifestealz" title="LifeStealZ" logo="/img/lsz.svg"}
+A lifesteal SMP: steal hearts in PvP, get eliminated at zero, and get revived by your team.
+:::
 
-We always welcome feedback, suggestions, and contributions from the community.
+:::card{href="/cookieclickerz" title="CookieClickerZ" logo="/img/ccz.svg"}
+Cookie Clicker in Minecraft, with upgrades, prestige, achievements and a top list.
+:::
 
-To contribute, please submit a pull request to the relevant repository. Each project may have its own contributing guidelines, so be sure to check those first.
+:::card{href="/timberz" title="TimberZ" logo="/img/tz.svg"}
+Cut down whole trees by breaking a single log.
+:::
 
-You can also share your feedback or ideas in our official [Discord server](https://strassburger.org/discord).
+:::card{href="/wyg" title="What'd Ya Got" logo="/img/wyg.svg"}
+Show off your items in chat with a hoverable preview.
+:::
+::::
 
-If you're interested in helping translate a plugin, please refer to that plugin's documentation. Most of our plugins use GitLocalize for translations, but you're also welcome to submit a pull request with the appropriate translation files.
+## Server essentials
 
-## Support
+::::cards
+:::card{href="/essentialz" title="EssentialZ" logo="/img/esz.svg"}
+Teleports, homes, warps and chat formatting, rebuilt for modern Paper.
+:::
 
-If you need help with one of our plugins, please first check the respective documentation. If you can't find the answer there, feel free to reach out to us on our [Discord server](https://strassburger.org/discord).
+:::card{href="/serverlinksz" title="ServerLinksZ" logo="/img/slz.svg"}
+Put your Discord, website and store in the pause menu.
+:::
 
-## Our Plugins
+:::card{href="/netwatchz" title="NetwatchZ" logo="/img/nwz.svg"}
+Block bots, VPNs and unwanted countries before they join.
+:::
+::::
 
-- [LifeStealZ](/lifestealz) - LifeStealZ is a lifesteal SMP plugin, that allows you to steal hearts from other players, when you kill them. If a player has no more hearts, he is eliminated.
-- [ServerLinksZ](/serverlinksz) - A Minecraft plugin, that allows you to add Links to the "Server Links" page in the pause menu. ServerLinksZ also adds a command for users to quickly look up links like /discord.
-- [CookieClickerZ](/cookieclickerz) - A Minecraft plugin that adds a Cookie Clicker game to your server. Players can click a cookie block to earn cookies and unlock upgrades, adding a fun and addictive mini-game to your server.
-- [TimberZ](/timberz) - TimberZ is a Minecraft plugin that allows players to chop down entire trees by breaking just one log block. It enhances the tree-cutting experience, making it more efficient and enjoyable for players.
-- [NetwatchZ](/netwatchz) - NetwatchZ is a Minecraft plugin that allows you to block certain IP addresses, block countries or VPNs from connecting to your server.
-- [WYG](/wyg) - WYG lets players show off their held items in chat. Type a simple placeholder, and your item appears for others to hover over and view its details.
+## For developers
 
-## Links
+::::cards
+:::card{href="/zetacore" title="ZetaCore" icon="Wrench"}
+A lightweight framework for Paper plugins: annotate your commands, listeners and configs, and ZetaCore registers them for you.
+:::
+::::
 
-- [GitHub](https://github.com/ZetaPlugins) - Our GitHub organization where you can find the source code for all our plugins.
-- [Modrinth](https://modrinth.com/organization/zetaplugins) - Our Modrinth organization where you can download our plugins.
-- [Discord](https://strassburger.org/discord) - Join our Discord server to get support, report bugs, or just chat with us.
+Several plugins also have a developer API, such as the [LifeStealZ API](/lifestealz/dev/usinglszapi), and JavaDocs linked from their overview pages.
+
+## Get involved
+
+All of our plugins are open source, and we're happy about every bug report, idea and pull request.
+
+::::cards
+:::card{href="https://strassburger.org/discord" title="Discord" icon="Discord"}
+Get support in #support, report bugs, share ideas or just chat with us.
+:::
+
+:::card{href="https://github.com/ZetaPlugins" title="GitHub" icon="GitHub"}
+Browse the source, open issues and send pull requests.
+:::
+
+:::card{href="/localization" title="Translate" icon="Languages"}
+Help translate our plugins into your language with GitLocalize.
+:::
+
+:::card{href="https://modrinth.com/organization/zetaplugins" title="Modrinth" icon="Modrinth"}
+Download every plugin from our Modrinth organization.
+:::
+::::
+
+:::tip[Need help?]
+Check the plugin's docs first. If you can't find the answer there, ask in the #support channel on our [Discord server](https://strassburger.org/discord).
+:::

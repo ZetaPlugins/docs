@@ -884,6 +884,21 @@ kbd {
 .prose > a.card {
     margin: 1.2em 0;
 }
+.prose a.card[data-brand] {
+    --accent: var(--brand);
+    --accent-fg: color-mix(in srgb, var(--brand) 70%, #000);
+    --accent-soft: color-mix(in srgb, var(--brand) 9%, #fff);
+    border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+    background: linear-gradient(160deg, var(--accent-soft), var(--bg-subtle) 70%);
+}
+.prose a.card[data-brand]:hover {
+    border-color: var(--accent);
+}
+:root[data-theme='dark'] .prose a.card[data-brand] {
+    --accent: color-mix(in srgb, var(--brand) 70%, #fff);
+    --accent-fg: color-mix(in srgb, var(--brand) 50%, #fff);
+    --accent-soft: color-mix(in srgb, var(--brand) 16%, #0c0c0e);
+}
 .prose a.card:hover {
     border-color: var(--accent);
 }
@@ -900,6 +915,12 @@ kbd {
 .card-icon svg {
     width: 18px;
     height: 18px;
+}
+.prose .card-logo {
+    width: 32px;
+    height: 32px;
+    margin: 0 0 6px;
+    border-radius: 8px;
 }
 .card-title {
     font-weight: 600;

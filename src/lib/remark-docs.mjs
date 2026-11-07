@@ -6,7 +6,9 @@
  *   ::::tabs + :::tab[Label]                             -> tab groups
  *   :::steps                                             -> numbered steps (one per ### heading)
  *   ::::cards + :::card{href="..." title="..." icon="Package"}  -> link cards
- *       (icon: a lucide name, or the name of a brand icon in src/components/icons, e.g. "Discord")
+ *       (icon: a lucide name, or the name of a brand icon in src/components/icons, e.g. "Discord";
+ *        logo="/img/lsz.svg" shows an image instead of an icon; logo cards linking to a product
+ *        take that product's accent color, and accent="#hex" sets one explicitly)
  *   :::files (containing a nested list)                  -> file tree
  *
  * It also resolves relative links (`guide/commands`, `messages.md#formatting`)
@@ -156,15 +158,36 @@ function tabs(node) {
     ]);
 }
 
+/** The "accent" color from a product's meta.json, if the href points at a product's docs. */
+function productAccent(href) {
+    const product = href.match(/^\/([\w-]+)/)?.[1];
+    if (!product) return undefined;
+    try {
+        return JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, product, 'meta.json'), 'utf8')).accent;
+    } catch {
+        return undefined;
+    }
+}
+
 function card(node) {
-    const { href = '#', title = '', icon: iconName } = node.attributes ?? {};
+    const { href = '#', title = '', icon: iconName, logo, accent: accentAttr } = node.attributes ?? {};
+    const accent = accentAttr ?? (logo ? productAccent(href) : undefined);
     const external = /^https?:\/\//.test(href);
     const { body } = splitLabel(node);
     return el(
         'a',
-        { className: ['card'], href, ...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {}) },
+        {
+            className: ['card'],
+            href,
+            ...(accent && /^#[0-9a-f]{3,8}$/i.test(accent) ? { style: `--brand: ${accent}`, dataBrand: '' } : {}),
+            ...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {}),
+        },
         [
-            ...(iconName && iconSvg(iconName) ? [el('span', { className: ['card-icon'] }, [icon(iconName)])] : []),
+            ...(logo
+                ? [el('img', { className: ['card-logo'], src: logo, alt: '', width: 32, height: 32 })]
+                : iconName && iconSvg(iconName)
+                  ? [el('span', { className: ['card-icon'] }, [icon(iconName)])]
+                  : []),
             el('span', { className: ['card-title'] }, [text(title)]),
             el(
                 'span',
