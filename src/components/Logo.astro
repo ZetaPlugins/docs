@@ -1,0 +1,22 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Inline the wordmark so its white text can follow the theme (currentColor).
+// public/img is not tracked in git, so fall back to a plain <img> if the file is missing.
+const file = path.resolve('public/img/z_long.svg');
+const svg = fs.existsSync(file)
+    ? fs
+          .readFileSync(file, 'utf8')
+          .replace(/<\?xml[^>]*>\s*/, '')
+          .replace(/<!DOCTYPE[^>]*>\s*/, '')
+          .replaceAll('fill:white', 'fill:currentColor')
+          .replace('<svg', '<svg role="img" aria-label="ZetaPlugins"')
+    : undefined;
+---
+
+{svg ? (
+    <span class="logo" set:html={svg} />
+) : (
+    <img class="logo" src="/img/z_long.svg" alt="ZetaPlugins" width="150" height="30" />
+)}

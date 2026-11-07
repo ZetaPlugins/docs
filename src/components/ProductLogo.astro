@@ -1,0 +1,17 @@
+---
+import type { Product } from '../lib/nav';
+import LucideIcon from './LucideIcon.astro';
+
+interface Props {
+    product: Product;
+}
+const { product } = Astro.props;
+---
+
+{product.logo ? (
+    <img class="product-logo" src={product.logo} alt="" width="28" height="28" />
+) : (
+    <span class="product-logo product-logo-icon">
+        <LucideIcon name={product.icon ?? 'Package'} />
+    </span>
+)}

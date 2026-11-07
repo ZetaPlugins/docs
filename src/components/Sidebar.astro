@@ -1,0 +1,64 @@
+---
+import type { Product } from '../lib/nav';
+import { ChevronsUpDown } from '@lucide/astro';
+import LucideIcon from './LucideIcon.astro';
+import ProductLogo from './ProductLogo.astro';
+
+interface Props {
+    products: Product[];
+    current: Product;
+    currentId: string;
+}
+const { products, current, currentId } = Astro.props;
+---
+
+<aside class="sidebar" id="sidebar" data-sidebar>
+    <details class="product-switcher">
+        <summary>
+            <ProductLogo product={current} />
+            <span class="product-text">
+                <span class="product-title">{current.title}</span>
+                {current.description && <span class="product-description">{current.description}</span>}
+            </span>
+            <span class="chevron">
+                <ChevronsUpDown size={16} aria-hidden="true" />
+            </span>
+        </summary>
+        <ul class="product-menu">
+            {products.map((p) => (
+                <li>
+                    <a href={p.href} aria-current={p === current ? 'true' : undefined}>
+                        <ProductLogo product={p} />
+                        <span class="product-text">
+                            <span class="product-title">{p.title}</span>
+                            {p.description && <span class="product-description">{p.description}</span>}
+                        </span>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </details>
+
+    <nav class="sidebar-nav" aria-label={`${current.title} pages`}>
+        {current.groups.map((group) => (
+            <div class="nav-group">
+                {group.label && <p class="nav-group-label">{group.label}</p>}
+                <ul>
+                    {group.pages.map((page) => (
+                        <li>
+                            <a href={page.href} aria-current={page.id === currentId ? 'page' : undefined}>
+                                {page.icon && (
+                                    <span class="nav-icon">
+                                        <LucideIcon name={page.icon} />
+                                    </span>
+                                )}
+                                <span>{page.title}</span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        ))}
+    </nav>
+</aside>
+<div class="sidebar-backdrop" data-menu-toggle></div>

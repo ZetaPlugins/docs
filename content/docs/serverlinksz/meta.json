@@ -1,6 +1,8 @@
 {
     "title": "ServerLinksZ",
     "description": "The ServerLinksZ plugin",
+    "logo": "/img/slz.svg",
+    "accent": "#0a7cff",
     "pages": [
         "index",
         "installation",
@@ -10,7 +12,5 @@
         "---Customization---",
         "customization/config",
         "customization/messages"
-    ],
-    "defaultOpen": false,
-    "root": true
+    ]
 }

@@ -1,11 +1,7 @@
 {
     "title": "CookieClickerZ",
-    "description": "The CookieCLickerZ plugin",
-    "pages": [
-        "index",
-        "installation",
-        "getting_started"
-    ],
-    "defaultOpen": false,
-    "root": true
+    "description": "The CookieClickerZ plugin",
+    "logo": "/img/ccz.svg",
+    "accent": "#d2691e",
+    "pages": ["index", "installation", "getting_started"]
 }

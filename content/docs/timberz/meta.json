@@ -1,10 +1,7 @@
 {
     "title": "TimberZ",
     "description": "The TimberZ plugin",
-    "pages": [
-        "index",
-        "installation"
-    ],
-    "defaultOpen": false,
-    "root": true
+    "logo": "/img/tz.svg",
+    "accent": "#16a34a",
+    "pages": ["index", "installation"]
 }

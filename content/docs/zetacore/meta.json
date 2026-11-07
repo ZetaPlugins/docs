@@ -1,6 +1,7 @@
 {
     "title": "ZetaCore",
     "description": "An easy to use Minecraft plugin framework",
+    "icon": "Wrench",
     "pages": [
         "index",
         "---Getting Started---",
@@ -16,7 +17,5 @@
         "guide/permissions",
         "guide/papi",
         "guide/update-checker"
-    ],
-    "defaultOpen": false,
-    "root": true
+    ]
 }

@@ -1,0 +1,123 @@
+---
+import { Search, X } from '@lucide/astro';
+---
+
+<dialog class="search-dialog" data-search-dialog aria-label="Search documentation">
+    <div class="search-box">
+        <div class="search-input-row">
+            <Search size={18} aria-hidden="true" />
+            <input
+                type="text"
+                enterkeyhint="search"
+                placeholder="Search the docs…"
+                autocomplete="off"
+                spellcheck="false"
+                data-search-input
+            />
+            <button class="icon-button" type="button" aria-label="Close search" data-search-close>
+                <X size={20} aria-hidden="true" />
+            </button>
+        </div>
+        <ul class="search-results" data-search-results role="listbox"></ul>
+        <p class="search-status" data-search-status>
+            Type to search.
+        </p>
+    </div>
+</dialog>
+
+<script>
+    type PagefindResult = {
+        data: () => Promise<{ url: string; excerpt: string; meta: { title?: string; product?: string } }>;
+    };
+    type Pagefind = { search: (q: string) => Promise<{ results: PagefindResult[] }> };
+
+    const dialog = document.querySelector<HTMLDialogElement>('[data-search-dialog]')!;
+    const input = dialog.querySelector<HTMLInputElement>('[data-search-input]')!;
+    const list = dialog.querySelector<HTMLUListElement>('[data-search-results]')!;
+    const status = dialog.querySelector<HTMLParagraphElement>('[data-search-status]')!;
+
+    let pagefind: Pagefind | null | undefined;
+    async function loadPagefind(): Promise<Pagefind | null> {
+        if (pagefind !== undefined) return pagefind;
+        try {
+            const url = '/pagefind/pagefind.js';
+            pagefind = (await import(/* @vite-ignore */ url)) as Pagefind;
+        } catch {
+            pagefind = null;
+        }
+        return pagefind;
+    }
+
+    function open() {
+        dialog.showModal();
+        input.select();
+        loadPagefind();
+    }
+
+    document.querySelectorAll('[data-search-open]').forEach((b) => b.addEventListener('click', open));
+    dialog.querySelector('[data-search-close]')!.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close();
+    });
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            dialog.open ? dialog.close() : open();
+        } else if (
+            e.key === '/' &&
+            !dialog.open &&
+            !(e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement)
+        ) {
+            e.preventDefault();
+            open();
+        }
+    });
+
+    let token = 0;
+    input.addEventListener('input', async () => {
+        const query = input.value.trim();
+        const current = ++token;
+        if (!query) {
+            list.replaceChildren();
+            status.textContent = 'Type to search.';
+            return;
+        }
+        if (!list.childElementCount) status.textContent = 'Searching…';
+        const pf = await loadPagefind();
+        if (!pf) {
+            status.textContent = 'Search index not found. Run "pnpm build" to generate it.';
+            return;
+        }
+        const { results } = await pf.search(query);
+        const data = await Promise.all(results.slice(0, 10).map((r) => r.data()));
+        if (current !== token) return;
+
+        list.replaceChildren(
+            ...data.map((d) => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = d.url.replace(/\.html$/, '').replace(/\/index$/, '') || '/';
+                const head = document.createElement('span');
+                head.className = 'search-result-title';
+                head.textContent = d.meta.title ?? d.url;
+                if (d.meta.product) {
+                    const tag = document.createElement('span');
+                    tag.className = 'search-result-product';
+                    tag.textContent = d.meta.product;
+                    head.append(tag);
+                }
+                const excerpt = document.createElement('span');
+                excerpt.className = 'search-result-excerpt';
+                excerpt.innerHTML = d.excerpt; // pagefind escapes content and only adds <mark>
+                a.append(head, excerpt);
+                li.append(a);
+                return li;
+            }),
+        );
+        status.textContent = data.length ? '' : `No results for “${query}”.`;
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') list.querySelector('a')?.click();
+    });
+</script>
